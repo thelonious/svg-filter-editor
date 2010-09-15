@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="100.443" y="122" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result1"/>
+    </element>
+    <literal id="literal1" x="65.014" y="89">dilate</literal>
+    <element id="morphology1" x="67" y="66" type="feMorphology">
+      <input name="in"/>
+      <input name="radius"/>
+      <input name="operator"/>
+      <output name="result2"/>
+    </element>
+    <literal id="literal2" x="14.2926" y="25">SourceGraphic</literal>
+    <literal id="literal3" x="105.089" y="27">5</literal>
+    <literal id="literal4" x="129.878" y="27">dilate</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="filter1" name="id"/>
+    <edge output="morphology1" input="filter1" name="in"/>
+    <edge output="literal2" input="morphology1" name="in"/>
+    <edge output="literal3" input="morphology1" name="radius"/>
+    <edge output="literal4" input="morphology1" name="operator"/>
+  </edges>
+</filter-graph>

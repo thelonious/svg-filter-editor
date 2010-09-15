@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+    <nodes>
+        <element id="filter1" x="121" y="440" type="filter">
+            <input name="id"/>
+            <input name="in"/>
+            <input name="filterUnits"/>
+            <input name="x"/>
+            <input name="y"/>
+            <input name="width"/>
+            <input name="height"/>
+            <output name="result129"/>
+        </element>
+        <element id="gaussian2" x="82.2163" y="76" type="feGaussianBlur">
+            <input name="in"/>
+            <input name="stdDeviation"/>
+            <output name="result130"/>
+        </element>
+        <element id="offset1" x="79" y="194" type="feOffset">
+            <input name="in"/>
+            <input name="dx"/>
+            <input name="dy"/>
+            <output name="result131"/>
+        </element>
+        <element id="specular1" x="153" y="194" type="feSpecularLighting">
+            <input name="in"/>
+            <input name="light"/>
+            <input name="specularConstant"/>
+            <input name="specularExponent"/>
+            <input name="surfaceScale"/>
+            <output name="result132"/>
+        </element>
+        <element id="pointlight1" x="169" y="141" type="fePointLight">
+            <input name="x"/>
+            <input name="y"/>
+            <input name="z"/>
+            <output name="result133"/>
+        </element>
+        <element id="composite1" x="195" y="251" type="feComposite">
+            <input name="in"/>
+            <input name="in2"/>
+            <input name="operator"/>
+            <output name="result134"/>
+        </element>
+        <element id="composite2" x="216.258" y="333" type="feComposite">
+            <input name="in"/>
+            <input name="in2"/>
+            <input name="operator"/>
+            <input name="k1"/>
+            <input name="k2"/>
+            <input name="k3"/>
+            <input name="k4"/>
+            <output name="result135"/>
+        </element>
+        <element id="merge1" x="91.0786" y="355" type="feMerge">
+            <input name="in1"/>
+            <input name="in2"/>
+            <output name="result136"/>
+        </element>
+        <element id="filter2" x="48" y="312" type="filter">
+            <input name="id"/>
+            <input name="in"/>
+            <input name="filterUnits"/>
+            <input name="x"/>
+            <input name="y"/>
+            <input name="width"/>
+            <input name="height"/>
+            <output name="result137"/>
+        </element>
+        <element id="filter3" x="243.633" y="410" type="filter">
+            <input name="id"/>
+            <input name="in"/>
+            <input name="filterUnits"/>
+            <input name="x"/>
+            <input name="y"/>
+            <input name="width"/>
+            <input name="height"/>
+            <output name="result138"/>
+        </element>
+        <literal id="literal1" x="72" y="405">myFilter</literal>
+        <literal id="literal2" x="89.9764" y="381">objectBoundingBox</literal>
+        <literal id="literal3" x="188" y="406">150%</literal>
+        <literal id="literal5" x="69" y="31">SourceAlpha</literal>
+        <literal id="literal6" x="149" y="33">4</literal>
+        <literal id="literal7" x="151" y="104">-5000</literal>
+        <literal id="literal8" x="198" y="104">-10000</literal>
+        <literal id="literal9" x="252" y="104">20000</literal>
+        <literal id="literal10" x="289" y="162">5</literal>
+        <literal id="literal11" x="220" y="162">0.75</literal>
+        <literal id="literal12" x="259" y="162">20</literal>
+        <literal id="literal13" x="222" y="217">SourceAlpha</literal>
+        <literal id="literal14" x="301" y="219">in</literal>
+        <literal id="literal15" x="132" y="298">SourceGraphic</literal>
+        <literal id="literal16" x="217.269" y="286">arithmetic</literal>
+        <literal id="literal17" x="282" y="275">0</literal>
+        <literal id="literal18" x="274" y="304">1</literal>
+        <literal id="literal19" x="109.712" y="158">4</literal>
+        <literal id="literal20" x="146" y="406">-20%</literal>
+        <literal id="literal21" x="25.2402" y="238">offsetBlur</literal>
+        <literal id="literal22" x="210" y="371">litPaint</literal>
+    </nodes>
+    <edges>
+        <edge output="literal1" input="filter1" name="id"/>
+        <edge output="merge1" input="filter1" name="in"/>
+        <edge output="literal2" input="filter1" name="filterUnits"/>
+        <edge output="literal20" input="filter1" name="x"/>
+        <edge output="literal20" input="filter1" name="y"/>
+        <edge output="literal3" input="filter1" name="width"/>
+        <edge output="literal3" input="filter1" name="height"/>
+        <edge output="literal5" input="gaussian2" name="in"/>
+        <edge output="literal6" input="gaussian2" name="stdDeviation"/>
+        <edge output="gaussian2" input="offset1" name="in"/>
+        <edge output="literal19" input="offset1" name="dx"/>
+        <edge output="literal19" input="offset1" name="dy"/>
+        <edge output="gaussian2" input="specular1" name="in"/>
+        <edge output="pointlight1" input="specular1" name="light"/>
+        <edge output="literal11" input="specular1" name="specularConstant"/>
+        <edge output="literal12" input="specular1" name="specularExponent"/>
+        <edge output="literal10" input="specular1" name="surfaceScale"/>
+        <edge output="literal7" input="pointlight1" name="x"/>
+        <edge output="literal8" input="pointlight1" name="y"/>
+        <edge output="literal9" input="pointlight1" name="z"/>
+        <edge output="specular1" input="composite1" name="in"/>
+        <edge output="literal13" input="composite1" name="in2"/>
+        <edge output="literal14" input="composite1" name="operator"/>
+        <edge output="literal15" input="composite2" name="in"/>
+        <edge output="composite1" input="composite2" name="in2"/>
+        <edge output="literal16" input="composite2" name="operator"/>
+        <edge output="literal17" input="composite2" name="k1"/>
+        <edge output="literal18" input="composite2" name="k2"/>
+        <edge output="literal18" input="composite2" name="k3"/>
+        <edge output="literal17" input="composite2" name="k4"/>
+        <edge output="offset1" input="merge1" name="in1"/>
+        <edge output="composite2" input="merge1" name="in2"/>
+        <edge output="literal21" input="filter2" name="id"/>
+        <edge output="offset1" input="filter2" name="in"/>
+        <edge output="literal22" input="filter3" name="id"/>
+        <edge output="composite2" input="filter3" name="in"/>
+    </edges>
+</filter-graph>

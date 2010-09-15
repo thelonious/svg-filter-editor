@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter" x="234.633" y="513" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result15"/>
+    </element>
+    <element id="composite3" x="207.258" y="434" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <output name="result16"/>
+    </element>
+    <element id="composite2" x="186" y="372" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <input name="k2"/>
+      <input name="k3"/>
+      <output name="result17"/>
+    </element>
+    <element id="specular" x="265.769" y="304" type="feSpecularLighting">
+      <input name="in"/>
+      <input name="light"/>
+      <input name="surfaceScale"/>
+      <input name="specularConstant"/>
+      <input name="specularExponent"/>
+      <output name="result18"/>
+    </element>
+    <element id="pointlight" x="264" y="224" type="fePointLight">
+      <input name="x"/>
+      <input name="y"/>
+      <input name="z"/>
+      <output name="result19"/>
+    </element>
+    <element id="gaussian2" x="197" y="273" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result20"/>
+    </element>
+    <element id="gaussian1" x="84.4916" y="304" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result21"/>
+    </element>
+    <element id="composite1" x="77.0095" y="254" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <input name="k1"/>
+      <output name="result22"/>
+    </element>
+    <element id="colormatrix" x="61.1136" y="162" type="feColorMatrix">
+      <input name="in"/>
+      <input name="type"/>
+      <input name="values"/>
+      <output name="result23"/>
+    </element>
+    <element id="displace" x="24" y="104" type="feDisplacementMap">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="scale"/>
+      <input name="xChannelSelector"/>
+      <input name="yChannelSelector"/>
+      <output name="result24"/>
+    </element>
+    <element id="turbulence" x="8.75915" y="54" type="feTurbulence">
+      <input name="baseFrequency"/>
+      <input name="numOctaves"/>
+      <output name="result25"/>
+    </element>
+    <literal id="literal1" x="162" y="483">beveledMarble</literal>
+    <literal id="literal2" x="203.61" y="455">objectBoundingBox</literal>
+    <literal id="literal3" x="265" y="476">-10%</literal>
+    <literal id="literal4" x="306" y="476">150%</literal>
+    <literal id="literal5" x="206.496" y="402">SourceGraphic</literal>
+    <literal id="literal6" x="296" y="404">in</literal>
+    <literal id="literal7" x="176" y="329">arithmetic</literal>
+    <literal id="literal8" x="240.368" y="329">1</literal>
+    <literal id="literal9" x="318.225" y="265">5</literal>
+    <literal id="literal10" x="340" y="265">0.5</literal>
+    <literal id="literal11" x="371" y="265">20</literal>
+    <literal id="literal12" x="239" y="192">-5000</literal>
+    <literal id="literal13" x="283.573" y="192">-10000</literal>
+    <literal id="literal14" x="335" y="192">20000</literal>
+    <literal id="literal15" x="184" y="241">SourceAlpha</literal>
+    <literal id="literal16" x="263" y="243">3</literal>
+    <literal id="literal17" x="145.154" y="273">1</literal>
+    <literal id="literal18" x="50.7367" y="187">SourceGraphic</literal>
+    <literal id="literal19" x="97.1528" y="208">arithmetic</literal>
+    <literal id="literal20" x="135.629" y="225">1</literal>
+    <literal id="literal21" x="88.9049" y="127">matrix</literal>
+    <literal id="literal22" x="156" y="90">0 0 0 1 0
+0 0 0 1 0
+0 0 0 1 0
+0 0 0 0 255</literal>
+    <literal id="literal23" x="67" y="73">25</literal>
+    <literal id="literal24" x="95.3989" y="73">R</literal>
+    <literal id="literal25" x="120" y="73">G</literal>
+    <literal id="literal26" x="21.6671" y="21">0.15</literal>
+    <literal id="literal27" x="61.0513" y="21">1</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="filter" name="id"/>
+    <edge output="composite3" input="filter" name="in"/>
+    <edge output="literal2" input="filter" name="filterUnits"/>
+    <edge output="literal3" input="filter" name="x"/>
+    <edge output="literal3" input="filter" name="y"/>
+    <edge output="literal4" input="filter" name="width"/>
+    <edge output="literal4" input="filter" name="height"/>
+    <edge output="composite2" input="composite3" name="in"/>
+    <edge output="literal5" input="composite3" name="in2"/>
+    <edge output="literal6" input="composite3" name="operator"/>
+    <edge output="gaussian1" input="composite2" name="in"/>
+    <edge output="specular" input="composite2" name="in2"/>
+    <edge output="literal7" input="composite2" name="operator"/>
+    <edge output="literal8" input="composite2" name="k2"/>
+    <edge output="literal8" input="composite2" name="k3"/>
+    <edge output="gaussian2" input="specular" name="in"/>
+    <edge output="pointlight" input="specular" name="light"/>
+    <edge output="literal9" input="specular" name="surfaceScale"/>
+    <edge output="literal10" input="specular" name="specularConstant"/>
+    <edge output="literal11" input="specular" name="specularExponent"/>
+    <edge output="literal12" input="pointlight" name="x"/>
+    <edge output="literal13" input="pointlight" name="y"/>
+    <edge output="literal14" input="pointlight" name="z"/>
+    <edge output="literal15" input="gaussian2" name="in"/>
+    <edge output="literal16" input="gaussian2" name="stdDeviation"/>
+    <edge output="composite1" input="gaussian1" name="in"/>
+    <edge output="literal17" input="gaussian1" name="stdDeviation"/>
+    <edge output="literal18" input="composite1" name="in"/>
+    <edge output="colormatrix" input="composite1" name="in2"/>
+    <edge output="literal19" input="composite1" name="operator"/>
+    <edge output="literal20" input="composite1" name="k1"/>
+    <edge output="displace" input="colormatrix" name="in"/>
+    <edge output="literal21" input="colormatrix" name="type"/>
+    <edge output="literal22" input="colormatrix" name="values"/>
+    <edge output="turbulence" input="displace" name="in"/>
+    <edge output="turbulence" input="displace" name="in2"/>
+    <edge output="literal23" input="displace" name="scale"/>
+    <edge output="literal24" input="displace" name="xChannelSelector"/>
+    <edge output="literal25" input="displace" name="yChannelSelector"/>
+    <edge output="literal26" input="turbulence" name="baseFrequency"/>
+    <edge output="literal27" input="turbulence" name="numOctaves"/>
+  </edges>
+</filter-graph>

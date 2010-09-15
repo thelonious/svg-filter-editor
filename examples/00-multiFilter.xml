@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="gaussian" x="74" y="74" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result49"/>
+    </element>
+    <element id="offset" x="110.01" y="126" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="result50"/>
+    </element>
+    <element id="func" x="188" y="126" type="linear">
+      <input name="slope"/>
+      <input name="intercept"/>
+      <output name="result51"/>
+    </element>
+    <element id="transfer" x="119.324" y="185" type="feComponentTransfer">
+      <input name="in"/>
+      <input name="r"/>
+      <input name="g"/>
+      <input name="b"/>
+      <input name="a"/>
+      <output name="result52"/>
+    </element>
+    <element id="merge" x="169.632" y="249" type="feMerge">
+      <input name="in1"/>
+      <input name="in2"/>
+      <output name="result53"/>
+    </element>
+    <element id="filter" x="183.837" y="335" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result54"/>
+    </element>
+    <element id="filter2" x="78" y="257" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result55"/>
+    </element>
+    <element id="filter3" x="34" y="193" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result56"/>
+    </element>
+    <element id="filter4" x="23" y="135" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result57"/>
+    </element>
+    <literal id="literal1" x="196" y="217">SourceGraphic</literal>
+    <literal id="literal2" x="134" y="41">4</literal>
+    <literal id="literal3" x="140.839" y="93">5</literal>
+    <literal id="literal5" x="215.731" y="94">0.1</literal>
+    <literal id="literal6" x="118" y="277">dropShadow</literal>
+    <literal id="literal7" x="244" y="294">150%</literal>
+    <literal id="literal8" x="70.9661" y="23">SourceAlpha</literal>
+    <literal id="literal9" x="60.5827" y="220">transfer</literal>
+    <literal id="literal10" x="21.9279" y="157">offset</literal>
+    <literal id="literal11" x="2.84325" y="92">gaussian</literal>
+    <literal id="literal12" x="203" y="293">-25%</literal>
+  </nodes>
+  <edges>
+    <edge output="literal8" input="gaussian" name="in"/>
+    <edge output="literal2" input="gaussian" name="stdDeviation"/>
+    <edge output="gaussian" input="offset" name="in"/>
+    <edge output="literal3" input="offset" name="dx"/>
+    <edge output="literal3" input="offset" name="dy"/>
+    <edge output="literal5" input="func" name="intercept"/>
+    <edge output="offset" input="transfer" name="in"/>
+    <edge output="func" input="transfer" name="r"/>
+    <edge output="func" input="transfer" name="g"/>
+    <edge output="func" input="transfer" name="b"/>
+    <edge output="transfer" input="merge" name="in1"/>
+    <edge output="literal1" input="merge" name="in2"/>
+    <edge output="literal6" input="filter" name="id"/>
+    <edge output="merge" input="filter" name="in"/>
+    <edge output="literal12" input="filter" name="x"/>
+    <edge output="literal12" input="filter" name="y"/>
+    <edge output="literal7" input="filter" name="height"/>
+    <edge output="literal7" input="filter" name="width"/>
+    <edge output="literal9" input="filter2" name="id"/>
+    <edge output="transfer" input="filter2" name="in"/>
+    <edge output="literal10" input="filter3" name="id"/>
+    <edge output="offset" input="filter3" name="in"/>
+    <edge output="literal11" input="filter4" name="id"/>
+    <edge output="gaussian" input="filter4" name="in"/>
+  </edges>
+</filter-graph>

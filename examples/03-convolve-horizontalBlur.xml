@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="101.759" y="195" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result1"/>
+    </element>
+    <element id="convolve1" x="58" y="126" type="feConvolveMatrix">
+      <input name="in"/>
+      <input name="order"/>
+      <input name="kernelMatrix"/>
+      <input name="edgeMode"/>
+      <output name="result3"/>
+    </element>
+    <literal id="literal1" x="50" y="157">myFilter</literal>
+    <literal id="literal2" x="81" y="78">3 1</literal>
+    <literal id="literal3" x="114" y="78">0.3333 0.3333 0.3333</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="filter1" name="id"/>
+    <edge output="convolve1" input="filter1" name="in"/>
+    <edge output="literal2" input="convolve1" name="order"/>
+    <edge output="literal3" input="convolve1" name="kernelMatrix"/>
+  </edges>
+</filter-graph>

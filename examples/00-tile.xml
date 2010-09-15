@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="93.9434" y="193" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result4"/>
+    </element>
+    <element id="tile1" x="84.5899" y="139" type="feTile">
+      <input name="in"/>
+      <output name="result9"/>
+    </element>
+    <element id="flood1" x="35" y="63" type="feFlood">
+      <input name="in"/>
+      <input name="flood-color"/>
+      <input name="flood-opacity"/>
+      <output name="result10"/>
+    </element>
+    <element id="offset1" x="76" y="103" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="result11"/>
+    </element>
+    <literal id="literal6" x="47" y="159">myFilter</literal>
+    <literal id="literal1" x="50.4736" y="22">red</literal>
+    <literal id="literal2" x="106.835" y="64">6</literal>
+  </nodes>
+  <edges>
+    <edge output="literal6" input="filter1" name="id"/>
+    <edge output="tile1" input="filter1" name="in"/>
+    <edge output="offset1" input="tile1" name="in"/>
+    <edge output="literal1" input="flood1" name="flood-color"/>
+    <edge output="flood1" input="offset1" name="in"/>
+    <edge output="literal2" input="offset1" name="dx"/>
+    <edge output="literal2" input="offset1" name="dy"/>
+  </edges>
+</filter-graph>

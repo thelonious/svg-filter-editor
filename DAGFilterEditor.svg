@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/css" href="DAGFilterEditor.css"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg onload="init(evt)" zoomAndPan="disable"
+     onkeypress="app.handleEvent(evt)" onkeydown="app.handleEvent(evt)" 
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <script type="text/ecmascript" xlink:href="DAGFilterEditor.js"/>
+</svg>

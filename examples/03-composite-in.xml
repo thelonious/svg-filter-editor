@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="106.368" y="205" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result1"/>
+    </element>
+    <element id="flood1" x="23" y="96" type="feFlood">
+      <input name="in"/>
+      <input name="flood-color"/>
+      <input name="flood-opacity"/>
+      <output name="flood"/>
+    </element>
+    <element id="composite1" x="154" y="96" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <output name="comp"/>
+    </element>
+    <element id="merge1" x="90" y="140" type="feMerge">
+      <input name="in1"/>
+      <input name="in2"/>
+      <output name="result4"/>
+    </element>
+    <literal id="literal1" x="61" y="173">myFilter</literal>
+    <literal id="literal2" x="33.2301" y="63">white</literal>
+    <literal id="literal3" x="76" y="63">1</literal>
+    <literal id="literal4" x="107" y="61">SourceGraphic</literal>
+    <literal id="literal5" x="145.844" y="35">BackgroundImage</literal>
+    <literal id="literal6" x="206.345" y="65">in</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="filter1" name="id"/>
+    <edge output="merge1" input="filter1" name="in"/>
+    <edge output="literal2" input="flood1" name="flood-color"/>
+    <edge output="literal3" input="flood1" name="flood-opacity"/>
+    <edge output="literal4" input="composite1" name="in"/>
+    <edge output="literal5" input="composite1" name="in2"/>
+    <edge output="literal6" input="composite1" name="operator"/>
+    <edge output="flood1" input="merge1" name="in1"/>
+    <edge output="composite1" input="merge1" name="in2"/>
+  </edges>
+</filter-graph>

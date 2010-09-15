@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="gaussian" x="28" y="71" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result79"/>
+    </element>
+    <element id="offset" x="64.0096" y="121" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="result80"/>
+    </element>
+    <element id="merge" x="76.0882" y="174" type="feMerge">
+      <input name="in1"/>
+      <input name="in2"/>
+      <output name="result81"/>
+    </element>
+    <element id="filter" x="90.2935" y="263" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result82"/>
+    </element>
+    <literal id="literal1" x="110" y="142">SourceGraphic</literal>
+    <literal id="literal2" x="87.4246" y="38">4</literal>
+    <literal id="literal3" x="94.8388" y="88">5</literal>
+    <literal id="literal6" x="30" y="198">dropShadow</literal>
+    <literal id="literal7" x="148" y="213">160%</literal>
+    <literal id="literal8" x="24.966" y="21">SourceAlpha</literal>
+    <literal id="literal9" x="111" y="225">-30%</literal>
+  </nodes>
+  <edges>
+    <edge output="literal8" input="gaussian" name="in"/>
+    <edge output="literal2" input="gaussian" name="stdDeviation"/>
+    <edge output="gaussian" input="offset" name="in"/>
+    <edge output="literal3" input="offset" name="dx"/>
+    <edge output="literal3" input="offset" name="dy"/>
+    <edge output="offset" input="merge" name="in1"/>
+    <edge output="literal1" input="merge" name="in2"/>
+    <edge output="literal6" input="filter" name="id"/>
+    <edge output="merge" input="filter" name="in"/>
+    <edge output="literal9" input="filter" name="x"/>
+    <edge output="literal9" input="filter" name="y"/>
+    <edge output="literal7" input="filter" name="height"/>
+    <edge output="literal7" input="filter" name="width"/>
+  </edges>
+</filter-graph>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="137.502" y="201" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result1"/>
+    </element>
+    <element id="diffuse1" x="94.9979" y="131" type="feDiffuseLighting">
+      <input name="in"/>
+      <input name="light"/>
+      <input name="surfaceScale"/>
+      <input name="diffuseConstant"/>
+      <output name="result9"/>
+    </element>
+    <element id="distantlight1" x="92" y="68" type="feDistantLight">
+      <input name="azimuth"/>
+      <input name="elevation"/>
+      <output name="result10"/>
+    </element>
+    <literal id="literal1" x="92" y="162">myFilter</literal>
+    <literal id="literal2" x="127.461" y="24">45</literal>
+    <literal id="literal3" x="32" y="92">SourceGraphic</literal>
+    <literal id="literal4" x="176.747" y="95">0</literal>
+    <literal id="literal5" x="151.074" y="95">10</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="filter1" name="id"/>
+    <edge output="diffuse1" input="filter1" name="in"/>
+    <edge output="literal3" input="diffuse1" name="in"/>
+    <edge output="distantlight1" input="diffuse1" name="light"/>
+    <edge output="literal5" input="diffuse1" name="surfaceScale"/>
+    <edge output="literal4" input="diffuse1" name="diffuseConstant"/>
+    <edge output="literal2" input="distantlight1" name="azimuth"/>
+    <edge output="literal2" input="distantlight1" name="elevation"/>
+  </edges>
+</filter-graph>

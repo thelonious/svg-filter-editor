@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="gaussian" x="42" y="76" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result87"/>
+    </element>
+    <element id="offset" x="78.0096" y="126" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="result88"/>
+    </element>
+    <element id="filter" x="93.7899" y="216" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result89"/>
+    </element>
+    <literal id="literal2" x="101.425" y="43">4</literal>
+    <literal id="literal3" x="108.839" y="93">5</literal>
+    <literal id="literal6" x="34" y="153">dropShadow</literal>
+    <literal id="literal7" x="144" y="174">160%</literal>
+    <literal id="literal8" x="38.966" y="23">SourceAlpha</literal>
+    <literal id="literal9" x="117" y="155">-30%</literal>
+  </nodes>
+  <edges>
+    <edge output="literal8" input="gaussian" name="in"/>
+    <edge output="literal2" input="gaussian" name="stdDeviation"/>
+    <edge output="gaussian" input="offset" name="in"/>
+    <edge output="literal3" input="offset" name="dx"/>
+    <edge output="literal3" input="offset" name="dy"/>
+    <edge output="literal6" input="filter" name="id"/>
+    <edge output="offset" input="filter" name="in"/>
+    <edge output="literal9" input="filter" name="x"/>
+    <edge output="literal9" input="filter" name="y"/>
+    <edge output="literal7" input="filter" name="height"/>
+    <edge output="literal7" input="filter" name="width"/>
+  </edges>
+</filter-graph>

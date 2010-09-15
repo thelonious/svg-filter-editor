@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="blend1" x="157" y="118" type="feBlend">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="mode"/>
+      <output name="result1"/>
+    </element>
+    <element id="filter1" x="171.83" y="177" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result2"/>
+    </element>
+    <literal id="literal1" x="125" y="145">myFilter</literal>
+    <literal id="literal2" x="206" y="91">screen</literal>
+    <literal id="literal3" x="70" y="85">SourceGraphic</literal>
+    <literal id="literal4" x="136.299" y="64">BackgroundImage</literal>
+  </nodes>
+  <edges>
+    <edge output="literal3" input="blend1" name="in"/>
+    <edge output="literal4" input="blend1" name="in2"/>
+    <edge output="literal2" input="blend1" name="mode"/>
+    <edge output="literal1" input="filter1" name="id"/>
+    <edge output="blend1" input="filter1" name="in"/>
+  </edges>
+</filter-graph>

@@ -1,0 +1,150 @@
+/*****
+*
+*   DAGStyles.css
+*
+*****/
+
+.button {
+    fill:          #C0C0E0;
+    stroke:        darkblue;
+    stroke-width:  1pt;
+}
+
+.button-label {
+    font-family:    Arial, sans-serif;
+    font-size:      7pt;
+    text-anchor:    middle;
+    pointer-events: none;
+}
+
+.button-selected {
+    fill:          #FFB0B0;
+    stroke:        darkred;
+    stroke-width:  1pt;
+}
+
+.console {
+    font-family: Courier-New, sans-serif;
+    font-size:   7pt;
+}
+
+.edge {
+    fill:          none;
+    stroke:        blue;
+    stroke-width:  1pt;
+}
+
+.element {
+    fill:          #C0C0E0;
+    stroke:        darkblue;
+    stroke-width:  1pt;
+}
+
+.element-label {
+    font-family:    Arial, sans-serif;
+    font-size:      7pt;
+    pointer-events: none;
+}
+
+.element-selected {
+    fill:          #FFB0B0;
+    stroke:        darkred;
+    stroke-width:  1pt;
+}
+
+.infobar {
+    fill:   silver;
+    stroke: gray;
+}
+
+.infobar-label {
+    font-family: Arial, sans-serif;
+    font-size:   8pt;
+}
+
+.knockout {
+    fill:   white;
+    stroke: none;
+}
+
+.literal {
+    fill: white;
+}
+
+.literal-bar {
+    fill:   none;
+    stroke: darkblue;
+}
+
+.literal-editable {
+    fill: #B0B0B0;
+}
+
+.literal-label {
+    font-family:    Arial, sans-serif;
+    font-size:      8pt;
+    pointer-events: none;
+}
+
+.literal-selected {
+    fill: #FFB0B0;
+}
+
+.marquee {
+    stroke-dasharray: 5 5;
+    stroke-width:     1pt;
+    stroke:           black;
+    fill:             none;
+    shape-rendering:  optimizeSpeed;
+}
+
+.menubar {
+    fill:   silver;
+    stroke: none;
+}
+
+.menuitem {
+    fill:   silver;
+    stroke: none;
+}
+
+.menuitem-label {
+    font-family:    Arial, sans-serif;
+    font-size:      8pt;
+    pointer-events: none;
+}
+
+.menuitem-selected {
+    fill:          gray;
+    stroke:        blue;
+    stroke-width:  1pt;
+}
+
+.mouseRegion {
+    opacity: 0;
+}
+
+.port {
+    fill:          white;
+    stroke:        red;
+    stroke-width:  1pt;
+}
+
+.port-selected {
+    fill:          red;
+    stroke:        red;
+    stroke-width:  1pt;
+}
+
+.textbox {
+    fill:          silver;
+    stroke:        gray;
+    stroke-width:  1pt;
+}
+
+.textbox-text {
+    font-family:    Arial, sans-serif;
+    font-size:      7pt;
+    pointer-events: none;
+}
+

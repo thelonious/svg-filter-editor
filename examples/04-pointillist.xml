@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="turbulence1" x="61" y="100" type="feTurbulence">
+      <input name="type"/>
+      <input name="baseFrequency"/>
+      <input name="numOctaves"/>
+      <input name="seed"/>
+      <input name="stitchTiles"/>
+      <output name="turbulence"/>
+    </element>
+    <literal id="literal16" x="13.425" y="65">turbulence</literal>
+    <literal id="literal17" x="76.8501" y="57">0.1</literal>
+    <literal id="literal18" x="107.275" y="57">2</literal>
+    <element id="morphology3" x="82.9825" y="167" type="feMorphology">
+      <input name="in"/>
+      <input name="radius"/>
+      <input name="operator"/>
+      <output name="dilation"/>
+    </element>
+    <literal id="literal19" x="121.568" y="124">4</literal>
+    <literal id="literal20" x="145.86" y="124">dilate</literal>
+    <element id="colormatrix1" x="106.613" y="228" type="feColorMatrix">
+      <input name="in"/>
+      <input name="type"/>
+      <input name="values"/>
+      <output name="result11"/>
+    </element>
+    <literal id="literal21" x="134.522" y="196">matrix</literal>
+    <literal id="literal22" x="185.477" y="165">1 0 0 0 0
+0 1 0 0 0
+0 0 1 0 0
+0 0 0 1 0</literal>
+    <element id="composite3" x="147" y="296" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <output name="result12"/>
+    </element>
+    <literal id="literal23" x="164.517" y="247">SourceGraphic</literal>
+    <literal id="literal24" x="215.776" y="270">in</literal>
+    <element id="filter3" x="174.375" y="357" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result13"/>
+    </element>
+    <literal id="literal25" x="128.571" y="319">myFilter</literal>
+  </nodes>
+  <edges>
+    <edge output="literal16" input="turbulence1" name="type"/>
+    <edge output="literal17" input="turbulence1" name="baseFrequency"/>
+    <edge output="literal18" input="turbulence1" name="numOctaves"/>
+    <edge output="turbulence1" input="morphology3" name="in"/>
+    <edge output="literal19" input="morphology3" name="radius"/>
+    <edge output="literal20" input="morphology3" name="operator"/>
+    <edge output="morphology3" input="colormatrix1" name="in"/>
+    <edge output="literal21" input="colormatrix1" name="type"/>
+    <edge output="literal22" input="colormatrix1" name="values"/>
+    <edge output="colormatrix1" input="composite3" name="in"/>
+    <edge output="literal23" input="composite3" name="in2"/>
+    <edge output="literal24" input="composite3" name="operator"/>
+    <edge output="literal25" input="filter3" name="id"/>
+    <edge output="composite3" input="filter3" name="in"/>
+  </edges>
+</filter-graph>

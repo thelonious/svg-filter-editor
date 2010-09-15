@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="160.447" y="265" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result4"/>
+    </element>
+    <element id="flood1" x="51" y="83" type="feFlood">
+      <input name="in"/>
+      <input name="flood-color"/>
+      <input name="flood-opacity"/>
+      <output name="flood1"/>
+    </element>
+    <element id="offset1" x="132" y="84" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="offset1"/>
+    </element>
+    <element id="composite1" x="122.569" y="141" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <output name="composite1"/>
+    </element>
+    <element id="merge1" x="144.079" y="203" type="feMerge">
+      <input name="in1"/>
+      <input name="in2"/>
+      <output name="result24"/>
+    </element>
+    <literal id="literal6" x="114" y="231">myFilter</literal>
+    <literal id="literal1" x="50" y="42">#408000</literal>
+    <literal id="literal2" x="151.944" y="46">15</literal>
+    <literal id="literal3" x="179.513" y="46">16</literal>
+    <literal id="literal4" x="109" y="42">0.8</literal>
+    <literal id="literal5" x="198" y="107">in</literal>
+    <literal id="literal7" x="173" y="168">SourceGraphic</literal>
+  </nodes>
+  <edges>
+    <edge output="literal6" input="filter1" name="id"/>
+    <edge output="merge1" input="filter1" name="in"/>
+    <edge output="literal1" input="flood1" name="flood-color"/>
+    <edge output="literal4" input="flood1" name="flood-opacity"/>
+    <edge output="literal2" input="offset1" name="dx"/>
+    <edge output="literal3" input="offset1" name="dy"/>
+    <edge output="flood1" input="composite1" name="in"/>
+    <edge output="offset1" input="composite1" name="in2"/>
+    <edge output="literal5" input="composite1" name="operator"/>
+    <edge output="composite1" input="merge1" name="in1"/>
+    <edge output="literal7" input="merge1" name="in2"/>
+  </edges>
+</filter-graph>

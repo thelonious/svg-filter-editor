@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="image1" x="158.026" y="86" type="feImage">
+      <input name="xlink:href"/>
+      <output name="map"/>
+    </element>
+    <element id="image2" x="41" y="85" type="feImage">
+      <input name="xlink:href"/>
+      <output name="texture"/>
+    </element>
+    <element id="displace1" x="146" y="140" type="feDisplacementMap">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="scale"/>
+      <input name="xChannelSelector"/>
+      <input name="yChannelSelector"/>
+      <output name="result3"/>
+    </element>
+    <element id="filter1" x="192.926" y="201" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result4"/>
+    </element>
+    <literal id="literal1" x="140.063" y="49">img/rotate20.png</literal>
+    <literal id="literal2" x="2.58915" y="49">img/DisplaceChecker.png</literal>
+    <literal id="literal3" x="194.596" y="107">64</literal>
+    <literal id="literal4" x="225" y="107">R</literal>
+    <literal id="literal5" x="250" y="107">G</literal>
+    <literal id="literal6" x="147" y="167">myFilter</literal>
+    <literal id="literal7" x="216.511" y="166">0</literal>
+    <literal id="literal8" x="232.731" y="166">1</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="image1" name="xlink:href"/>
+    <edge output="literal2" input="image2" name="xlink:href"/>
+    <edge output="image2" input="displace1" name="in"/>
+    <edge output="image1" input="displace1" name="in2"/>
+    <edge output="literal3" input="displace1" name="scale"/>
+    <edge output="literal4" input="displace1" name="xChannelSelector"/>
+    <edge output="literal5" input="displace1" name="yChannelSelector"/>
+    <edge output="literal6" input="filter1" name="id"/>
+    <edge output="displace1" input="filter1" name="in"/>
+    <edge output="literal7" input="filter1" name="x"/>
+    <edge output="literal7" input="filter1" name="y"/>
+    <edge output="literal8" input="filter1" name="width"/>
+    <edge output="literal8" input="filter1" name="height"/>
+  </edges>
+</filter-graph>

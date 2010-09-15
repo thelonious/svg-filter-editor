@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="112.767" y="167" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result1"/>
+    </element>
+    <element id="colormatrix1" x="78" y="100" type="feColorMatrix">
+      <input name="in"/>
+      <input name="type"/>
+      <input name="values"/>
+      <output name="result2"/>
+    </element>
+    <literal id="literal1" x="68" y="135">myFilter</literal>
+    <literal id="literal2" x="101.029" y="66">saturate</literal>
+    <literal id="literal3" x="32" y="44">SourceGraphic</literal>
+    <literal id="literal4" x="169" y="61">0.25</literal>
+  </nodes>
+  <edges>
+    <edge output="literal1" input="filter1" name="id"/>
+    <edge output="colormatrix1" input="filter1" name="in"/>
+    <edge output="literal3" input="colormatrix1" name="in"/>
+    <edge output="literal2" input="colormatrix1" name="type"/>
+    <edge output="literal4" input="colormatrix1" name="values"/>
+  </edges>
+</filter-graph>

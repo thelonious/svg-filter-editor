@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="gaussian" x="16" y="62" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result67"/>
+    </element>
+    <element id="offset" x="52.0096" y="112" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="result68"/>
+    </element>
+    <element id="func" x="130" y="112" type="linear">
+      <input name="slope"/>
+      <input name="intercept"/>
+      <output name="result69"/>
+    </element>
+    <element id="transfer" x="61.3236" y="157" type="feComponentTransfer">
+      <input name="in"/>
+      <input name="r"/>
+      <input name="g"/>
+      <input name="b"/>
+      <input name="a"/>
+      <output name="result70"/>
+    </element>
+    <element id="merge" x="111.632" y="217" type="feMerge">
+      <input name="in1"/>
+      <input name="in2"/>
+      <output name="result71"/>
+    </element>
+    <element id="filter" x="125.837" y="310" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="height"/>
+      <input name="width"/>
+      <output name="result72"/>
+    </element>
+    <literal id="literal1" x="141" y="185">SourceGraphic</literal>
+    <literal id="literal2" x="75.4246" y="29">4</literal>
+    <literal id="literal3" x="82.8388" y="79">5</literal>
+    <literal id="literal5" x="157.731" y="79">0.1</literal>
+    <literal id="literal6" x="66" y="269">dropShadow</literal>
+    <literal id="literal7" x="171" y="279">160%</literal>
+    <literal id="literal8" x="12.9661" y="11">SourceAlpha</literal>
+    <literal id="literal9" x="147" y="261">-30%</literal>
+  </nodes>
+  <edges>
+    <edge output="literal8" input="gaussian" name="in"/>
+    <edge output="literal2" input="gaussian" name="stdDeviation"/>
+    <edge output="gaussian" input="offset" name="in"/>
+    <edge output="literal3" input="offset" name="dx"/>
+    <edge output="literal3" input="offset" name="dy"/>
+    <edge output="literal5" input="func" name="intercept"/>
+    <edge output="offset" input="transfer" name="in"/>
+    <edge output="func" input="transfer" name="r"/>
+    <edge output="func" input="transfer" name="g"/>
+    <edge output="func" input="transfer" name="b"/>
+    <edge output="transfer" input="merge" name="in1"/>
+    <edge output="literal1" input="merge" name="in2"/>
+    <edge output="literal6" input="filter" name="id"/>
+    <edge output="merge" input="filter" name="in"/>
+    <edge output="literal9" input="filter" name="x"/>
+    <edge output="literal9" input="filter" name="y"/>
+    <edge output="literal7" input="filter" name="height"/>
+    <edge output="literal7" input="filter" name="width"/>
+  </edges>
+</filter-graph>

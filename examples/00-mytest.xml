@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="94.4102" y="210" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result8"/>
+    </element>
+    <element id="gaussian2" x="57" y="118" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result9"/>
+    </element>
+    <literal id="literal5" x="57" y="170">myTest</literal>
+    <literal id="literal1" x="35" y="71">SourceGraphic</literal>
+    <literal id="literal2" x="125" y="74">4</literal>
+    <literal id="literal3" x="112.527" y="153">-25%</literal>
+    <literal id="literal4" x="136.89" y="172">150%</literal>
+  </nodes>
+  <edges>
+    <edge output="literal5" input="filter1" name="id"/>
+    <edge output="gaussian2" input="filter1" name="in"/>
+    <edge output="literal3" input="filter1" name="x"/>
+    <edge output="literal3" input="filter1" name="y"/>
+    <edge output="literal4" input="filter1" name="width"/>
+    <edge output="literal4" input="filter1" name="height"/>
+    <edge output="literal1" input="gaussian2" name="in"/>
+    <edge output="literal2" input="gaussian2" name="stdDeviation"/>
+  </edges>
+</filter-graph>

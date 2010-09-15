@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="morphology2" x="85" y="107" type="feMorphology">
+      <input name="in"/>
+      <input name="radius"/>
+      <input name="operator"/>
+      <output name="morphedAlpha"/>
+    </element>
+    <literal id="literal5" x="44.2926" y="62">SourceAlpha</literal>
+    <literal id="literal6" x="123.585" y="64">3</literal>
+    <literal id="literal7" x="147.878" y="64">dilate</literal>
+    <element id="gaussian1" x="99" y="161" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="blurredAlpha"/>
+    </element>
+    <literal id="literal8" x="159.07" y="126">3</literal>
+    <element id="flood1" x="25" y="161" type="feFlood">
+      <input name="in"/>
+      <input name="flood-color"/>
+      <input name="flood-opacity"/>
+      <output name="result5"/>
+    </element>
+    <literal id="literal9" x="35.4451" y="120">black</literal>
+    <element id="composite1" x="72" y="215" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <output name="result6"/>
+    </element>
+    <literal id="literal10" x="144.776" y="186">in</literal>
+    <element id="composite2" x="71" y="298" type="feComposite">
+      <input name="in"/>
+      <input name="in2"/>
+      <input name="operator"/>
+      <output name="result7"/>
+    </element>
+    <literal id="literal11" x="20.2585" y="258">SourceGraphic</literal>
+    <literal id="literal12" x="124.776" y="255">over</literal>
+    <element id="filter2" x="98.3747" y="366" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result8"/>
+    </element>
+    <literal id="literal13" x="71.9459" y="326">glow</literal>
+    <literal id="literal14" x="118.659" y="323">-20%</literal>
+    <literal id="literal15" x="161.373" y="324">140%</literal>
+  </nodes>
+  <edges>
+    <edge output="literal5" input="morphology2" name="in"/>
+    <edge output="literal6" input="morphology2" name="radius"/>
+    <edge output="literal7" input="morphology2" name="operator"/>
+    <edge output="morphology2" input="gaussian1" name="in"/>
+    <edge output="literal8" input="gaussian1" name="stdDeviation"/>
+    <edge output="literal9" input="flood1" name="flood-color"/>
+    <edge output="flood1" input="composite1" name="in"/>
+    <edge output="gaussian1" input="composite1" name="in2"/>
+    <edge output="literal10" input="composite1" name="operator"/>
+    <edge output="literal11" input="composite2" name="in"/>
+    <edge output="composite1" input="composite2" name="in2"/>
+    <edge output="literal12" input="composite2" name="operator"/>
+    <edge output="literal13" input="filter2" name="id"/>
+    <edge output="composite2" input="filter2" name="in"/>
+    <edge output="literal14" input="filter2" name="x"/>
+    <edge output="literal14" input="filter2" name="y"/>
+    <edge output="literal15" input="filter2" name="width"/>
+    <edge output="literal15" input="filter2" name="height"/>
+  </edges>
+</filter-graph>

@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<interfaces>
+    <interface name="feBlend" label="BLEND" alias="blend">
+        <input name="in"   type="stdin-or-reference" groups="default"/>
+        <input name="in2"  type="stdin-or-reference" groups="default"/>
+        <input name="mode" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feColorMatrix" label="COLOR MATRIX" alias="colormatrix">
+        <input name="in"     type="stdin-or-reference" groups="default"/>
+        <input name="type"   type="attribute" groups="default"/>
+        <input name="values" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feComponentTransfer" label="COMPONENT TRANSFER" alias="transfer">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+        <input name="r"  type="ctFunction"         groups="default"/>
+        <input name="g"  type="ctFunction"         groups="default"/>
+        <input name="b"  type="ctFunction"         groups="default"/>
+        <input name="a"  type="ctFunction"         groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feComposite" label="COMPOSITE" alias="composite">
+        <input name="in"       type="stdin-or-reference" groups="default"/>
+        <input name="in2"      type="stdin-or-reference" groups="default"/>
+        <input name="operator" type="attribute"          groups="default"/>
+
+        <input name="k1" type="attribute"/>
+        <input name="k2" type="attribute"/>
+        <input name="k3" type="attribute"/>
+        <input name="k4" type="attribute"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feConvolveMatrix" label="CONVOLVE MATRIX" alias="convolve">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+        <input name="order" type="attribute" groups="default"/>
+        <input name="kernelMatrix" type="attribute" groups="default"/>
+        <input name="edgeMode" type="attribute" groups="default"/>
+
+        <input name="bias" type="attribute"/>
+        <input name="divisor" type="attribute"/>
+        <input name="kernelUnitLength" type="attribute"/>
+        <input name="preserveAlpha" type="attribute"/>
+        <input name="targetX" type="attribute"/>
+        <input name="targetY" type="attribute"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feDiffuseLighting" label="DIFFUSE LIGHTING" alias="diffuse">
+        <input name="in"              type="stdin-or-reference" groups="default"/>
+        <input name="light"           type="node"               groups="default"/>
+        <input name="surfaceScale"    type="attribute"          groups="default"/>
+        <input name="diffuseConstant" type="attribute"          groups="default"/>
+        <input name="lighting-color"  type="attribute"          groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="style" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+        <input name="class" type="attribute"/>
+        <input name="color" type="attribute"/>
+        <input name="color-interpolation" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="color-rendering" type="attribute"/>
+        <input name="kernelUnitLength" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feDisplacementMap" label="DISPLACEMENT MAP" alias="displace">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+        <input name="in2" type="stdin-or-reference" groups="default"/>
+        <input name="scale" type="attribute" groups="default"/>
+        <input name="xChannelSelector" type="attribute" groups="default"/>
+        <input name="yChannelSelector" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feDistantLight" label="DISTANT LIGHT" alias="distantlight">
+        <input name="azimuth"   type="attribute" groups="default"/>
+        <input name="elevation" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="node"/>
+    </interface>
+    <interface name="feFlood" label="FLOOD" alias="flood">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+        <input name="flood-color" type="attribute" groups="default"/>
+        <input name="flood-opacity" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="class" type="attribute"/>
+        <input name="color" type="attribute"/>
+        <input name="color-interpolation" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="color-rendering" type="attribute"/>
+        <input name="style" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feGaussianBlur" label="GAUSSIAN BLUR" alias="gaussian">
+        <input name="in"           type="stdin-or-reference" groups="default"/>
+        <input name="stdDeviation" type="attribute"          groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feImage" label="IMAGE" alias="image">
+        <input name="xlink:href" type="attribute" groups="default"/>
+
+        <input name="alignment-baseline" type="attribute"/>
+        <input name="baseline-shift" type="attribute"/>
+        <input name="class" type="attribute"/>
+        <input name="clip" type="attribute"/>
+        <input name="clip-path" type="attribute"/>
+        <input name="clip-rule" type="attribute"/>
+        <input name="color" type="attribute"/>
+        <input name="color-interpolation" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="color-profile" type="attribute"/>
+        <input name="color-rendering" type="attribute"/>
+        <input name="cursor" type="attribute"/>
+        <input name="direction" type="attribute"/>
+        <input name="display" type="attribute"/>
+        <input name="dominant-baseline" type="attribute"/>
+        <input name="enable-background" type="attribute"/>
+        <input name="externalResourcesRequired" type="attribute"/>
+        <input name="fill" type="attribute"/>
+        <input name="fill-opacity" type="attribute"/>
+        <input name="fill-rule" type="attribute"/>
+        <input name="filter" type="attribute"/>
+        <input name="flood-color" type="attribute"/>
+        <input name="flood-opacity" type="attribute"/>
+        <input name="font-family" type="attribute"/>
+        <input name="font-size" type="attribute"/>
+        <input name="font-size-adjust" type="attribute"/>
+        <input name="font-stretch" type="attribute"/>
+        <input name="font-style" type="attribute"/>
+        <input name="font-variant" type="attribute"/>
+        <input name="font-weight" type="attribute"/>
+        <input name="glyph-orientation-horizontal" type="attribute"/>
+        <input name="glyph-orientation-vertical" type="attribute"/>
+        <input name="id" type="attribute"/>
+        <input name="image-rendering" type="attribute"/>
+        <input name="kerning" type="attribute"/>
+        <input name="letter-spacing" type="attribute"/>
+        <input name="lighting-color" type="attribute"/>
+        <input name="marker-end" type="attribute"/>
+        <input name="marker-mid" type="attribute"/>
+        <input name="marker-start" type="attribute"/>
+        <input name="mask" type="attribute"/>
+        <input name="opacity" type="attribute"/>
+        <input name="overflow" type="attribute"/>
+        <input name="pointer-events" type="attribute"/>
+        <input name="shape-rendering" type="attribute"/>
+        <input name="stop-color" type="attribute"/>
+        <input name="stop-opacity" type="attribute"/>
+        <input name="stroke" type="attribute"/>
+        <input name="stroke-dasharray" type="attribute"/>
+        <input name="stroke-dashoffset" type="attribute"/>
+        <input name="stroke-linecap" type="attribute"/>
+        <input name="stroke-linejoin" type="attribute"/>
+        <input name="stroke-miterlimit" type="attribute"/>
+        <input name="stroke-opacity" type="attribute"/>
+        <input name="stroke-width" type="attribute"/>
+        <input name="style" type="attribute"/>
+        <input name="text-anchor" type="attribute"/>
+        <input name="text-decoration" type="attribute"/>
+        <input name="text-rendering" type="attribute"/>
+        <input name="unicode-bidi" type="attribute"/>
+        <input name="visibility" type="attribute"/>
+        <input name="word-spacing" type="attribute"/>
+        <input name="writing-mode" type="attribute"/>
+        <input name="xlink:actuate" type="attribute"/>
+        <input name="xlink:arcrole" type="attribute"/>
+        <input name="xlink:role" type="attribute"/>
+        <input name="xlink:show" type="attribute"/>
+        <input name="xlink:title" type="attribute"/>
+        <input name="xlink:type" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+        <input name="xml:lang" type="attribute"/>
+        <input name="xml:space" type="attribute"/>
+        <input name="xmlns:xlink" type="attribute"/>
+    </interface>
+    <interface name="feMerge" label="MERGE" alias="merge">
+        <input name="in1" type="feMergeNode" groups="default"/>
+        <input name="in2" type="feMergeNode" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feMorphology" label="MORPHOLOGY" alias="morphology">
+        <input name="in"       type="stdin-or-reference" groups="default"/>
+        <input name="radius"   type="attribute"          groups="default"/>
+        <input name="operator" type="attribute"             groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feOffset" label="OFFSET" alias="offset">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+        <input name="dx" type="attribute" groups="default"/>
+        <input name="dy" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="fePointLight" label="POINT LIGHT" alias="pointlight">
+        <input name="x" type="attribute" groups="default"/>
+        <input name="y" type="attribute" groups="default"/>
+        <input name="z" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="node"/>
+    </interface>
+    <interface name="feSpecularLighting" label="SPECULAR LIGHTING" alias="specular">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+        <input name="light" type="node" groups="default"/>
+        <input name="specularConstant" type="attribute" groups="default"/>
+        <input name="specularExponent" type="attribute" groups="default"/>
+        <input name="surfaceScale" type="attribute" groups="default"/>
+        <input name="kernelUnitLength" type="attribute"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="class" type="attribute"/>
+        <input name="color" type="attribute"/>
+        <input name="color-interpolation" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="color-rendering" type="attribute"/>
+        <input name="lighting-color" type="attribute"/>
+        <input name="style" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feSpotLight" label="SPOT LIGHT" alias="spotlight">
+        <input name="x" type="attribute" groups="default"/>
+        <input name="y" type="attribute" groups="default"/>
+        <input name="z" type="attribute" groups="default"/>
+        <input name="pointsAtX" type="attribute" groups="default"/>
+        <input name="pointsAtY" type="attribute" groups="default"/>
+        <input name="pointsAtZ" type="attribute" groups="default"/>
+        <input name="specularExponent" type="attribute"/>
+        <input name="limitingConeAngle" type="attribute"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="node"/>
+    </interface>
+    <interface name="feTile" label="TILE" alias="tile">
+        <input name="in" type="stdin-or-reference" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="feTurbulence" label="TURBULENCE" alias="turbulence">
+        <input name="type" type="attribute" groups="default"/>
+        <input name="baseFrequency" type="attribute" groups="default"/>
+        <input name="numOctaves" type="attribute" groups="default"/>
+        <input name="seed" type="attribute" groups="default"/>
+        <input name="stitchTiles" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="x" type="attribute"/>
+        <input name="y" type="attribute"/>
+        <input name="width" type="attribute"/>
+        <input name="height" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="reference"/>
+    </interface>
+    <interface name="filter" label="FILTER" alias="filter">
+        <input name="id"          type="attribute" groups="default"/>
+        <input name="in"          type="node"      groups="default"/>
+        <input name="filterUnits" type="attribute" groups="default"/>
+        <input name="x"           type="attribute" groups="default"/>
+        <input name="y"           type="attribute" groups="default"/>
+        <input name="width"       type="attribute" groups="default"/>
+        <input name="height"      type="attribute" groups="default"/>
+
+        <input name="alignment-baseline" type="attribute"/>
+        <input name="baseline-shift" type="attribute"/>
+        <input name="class" type="attribute"/>
+        <input name="clip" type="attribute"/>
+        <input name="clip-path" type="attribute"/>
+        <input name="clip-rule" type="attribute"/>
+        <input name="color" type="attribute"/>
+        <input name="color-interpolation" type="attribute"/>
+        <input name="color-interpolation-filters" type="attribute"/>
+        <input name="color-profile" type="attribute"/>
+        <input name="color-rendering" type="attribute"/>
+        <input name="cursor" type="attribute"/>
+        <input name="direction" type="attribute"/>
+        <input name="display" type="attribute"/>
+        <input name="dominant-baseline" type="attribute"/>
+        <input name="enable-background" type="attribute"/>
+        <input name="externalResourcesRequired" type="attribute"/>
+        <input name="fill" type="attribute"/>
+        <input name="fill-opacity" type="attribute"/>
+        <input name="fill-rule" type="attribute"/>
+        <input name="filter" type="attribute"/>
+        <input name="filterRes" type="attribute"/>
+        <input name="flood-color" type="attribute"/>
+        <input name="flood-opacity" type="attribute"/>
+        <input name="font-family" type="attribute"/>
+        <input name="font-size" type="attribute"/>
+        <input name="font-size-adjust" type="attribute"/>
+        <input name="font-stretch" type="attribute"/>
+        <input name="font-style" type="attribute"/>
+        <input name="font-variant" type="attribute"/>
+        <input name="font-weight" type="attribute"/>
+        <input name="glyph-orientation-horizontal" type="attribute"/>
+        <input name="glyph-orientation-vertical" type="attribute"/>
+        <input name="image-rendering" type="attribute"/>
+        <input name="kerning" type="attribute"/>
+        <input name="letter-spacing" type="attribute"/>
+        <input name="lighting-color" type="attribute"/>
+        <input name="marker-end" type="attribute"/>
+        <input name="marker-mid" type="attribute"/>
+        <input name="marker-start" type="attribute"/>
+        <input name="mask" type="attribute"/>
+        <input name="opacity" type="attribute"/>
+        <input name="overflow" type="attribute"/>
+        <input name="pointer-events" type="attribute"/>
+        <input name="primitiveUnits" type="attribute"/>
+        <input name="shape-rendering" type="attribute"/>
+        <input name="stop-color" type="attribute"/>
+        <input name="stop-opacity" type="attribute"/>
+        <input name="stroke" type="attribute"/>
+        <input name="stroke-dasharray" type="attribute"/>
+        <input name="stroke-dashoffset" type="attribute"/>
+        <input name="stroke-linecap" type="attribute"/>
+        <input name="stroke-linejoin" type="attribute"/>
+        <input name="stroke-miterlimit" type="attribute"/>
+        <input name="stroke-opacity" type="attribute"/>
+        <input name="stroke-width" type="attribute"/>
+        <input name="style" type="attribute"/>
+        <input name="text-anchor" type="attribute"/>
+        <input name="text-decoration" type="attribute"/>
+        <input name="text-rendering" type="attribute"/>
+        <input name="unicode-bidi" type="attribute"/>
+        <input name="visibility" type="attribute"/>
+        <input name="word-spacing" type="attribute"/>
+        <input name="writing-mode" type="attribute"/>
+        <input name="xlink:actuate" type="attribute"/>
+        <input name="xlink:arcrole" type="attribute"/>
+        <input name="xlink:href" type="attribute"/>
+        <input name="xlink:role" type="attribute"/>
+        <input name="xlink:show" type="attribute"/>
+        <input name="xlink:title" type="attribute"/>
+        <input name="xlink:type" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+        <input name="xml:lang" type="attribute"/>
+        <input name="xml:space" type="attribute"/>
+        <input name="xmlns:xlink" type="attribute"/>
+        <output name="result" type="node" groups="default"/>
+    </interface>
+
+    <!-- Custom DAG node types begin here -->
+    <interface name="identity" label="IDENTITY" alias="identity">
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="none"/>
+    </interface>
+    <interface name="table" label="TABLE" alias="table">
+        <input name="tableValues" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="none"/>
+    </interface>
+    <interface name="discrete" label="DISCRETE" alias="discrete">
+        <input name="tableValues" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="none"/>
+    </interface>
+    <interface name="linear" label="LINEAR" alias="linear">
+        <input name="slope" type="attribute" groups="default"/>
+        <input name="intercept" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="none"/>
+    </interface>
+    <interface name="gamma" label="GAMMA" alias="gamma">
+        <input name="amplitude" type="attribute" groups="default"/>
+        <input name="exponent" type="attribute" groups="default"/>
+        <input name="offset" type="attribute" groups="default"/>
+
+        <input name="id" type="attribute"/>
+        <input name="xml:base" type="attribute"/>
+
+        <output name="result" type="none"/>
+    </interface>
+</interfaces>

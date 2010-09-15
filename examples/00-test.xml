@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+  <nodes>
+    <element id="filter1" x="137" y="277" type="filter">
+      <input name="id"/>
+      <input name="in"/>
+      <input name="filterUnits"/>
+      <input name="x"/>
+      <input name="y"/>
+      <input name="width"/>
+      <input name="height"/>
+      <output name="result97"/>
+    </element>
+    <element id="gaussian2" x="25" y="51" type="feGaussianBlur">
+      <input name="in"/>
+      <input name="stdDeviation"/>
+      <output name="result98"/>
+    </element>
+    <element id="offset1" x="108.553" y="155" type="feOffset">
+      <input name="in"/>
+      <input name="dx"/>
+      <input name="dy"/>
+      <output name="result99"/>
+    </element>
+    <element id="merge1" x="120.632" y="201" type="feMerge">
+      <input name="in1"/>
+      <input name="in2"/>
+      <output name="result100"/>
+    </element>
+    <element id="transfer1" x="53.7808" y="98" type="feComponentTransfer">
+      <input name="in"/>
+      <input name="r"/>
+      <input name="g"/>
+      <input name="b"/>
+      <input name="a"/>
+      <output name="result101"/>
+    </element>
+    <element id="linear1" x="137" y="52" type="linear">
+      <input name="slope"/>
+      <input name="intercept"/>
+      <output name="result102"/>
+    </element>
+    <literal id="literal5" x="96.017" y="242.122">myTest</literal>
+    <literal id="literal1" x="6.4408" y="16.1122">SourceAlpha</literal>
+    <literal id="literal2" x="100.71" y="18.3628">6</literal>
+    <literal id="literal3" x="156.092" y="226.958">-25%</literal>
+    <literal id="literal4" x="186.534" y="245.958">160%</literal>
+    <literal id="literal6" x="139.382" y="118">5</literal>
+    <literal id="literal7" x="181" y="153">SourceGraphic</literal>
+    <literal id="literal8" x="165" y="17">0.1</literal>
+  </nodes>
+  <edges>
+    <edge output="literal5" input="filter1" name="id"/>
+    <edge output="merge1" input="filter1" name="in"/>
+    <edge output="literal3" input="filter1" name="x"/>
+    <edge output="literal3" input="filter1" name="y"/>
+    <edge output="literal4" input="filter1" name="width"/>
+    <edge output="literal4" input="filter1" name="height"/>
+    <edge output="literal1" input="gaussian2" name="in"/>
+    <edge output="literal2" input="gaussian2" name="stdDeviation"/>
+    <edge output="transfer1" input="offset1" name="in"/>
+    <edge output="literal6" input="offset1" name="dx"/>
+    <edge output="literal6" input="offset1" name="dy"/>
+    <edge output="offset1" input="merge1" name="in1"/>
+    <edge output="literal7" input="merge1" name="in2"/>
+    <edge output="gaussian2" input="transfer1" name="in"/>
+    <edge output="linear1" input="transfer1" name="r"/>
+    <edge output="linear1" input="transfer1" name="g"/>
+    <edge output="linear1" input="transfer1" name="b"/>
+    <edge output="literal8" input="linear1" name="intercept"/>
+  </edges>
+</filter-graph>

@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=iso-8859-1">
+        <title>DAG Filter Editor</title>
+        <hta:application scroll="no">
+        <script>
+            var width      = 900;
+            var height     = 570;
+            var exampleDir = "examples";
+            var svgDocument;
+            
+            function init() {
+                resizeTo(width, height);
+                moveTo(
+                    (screen.availWidth  - width ) / 2,
+                    (screen.availHeight - height) / 2
+                );
+
+                svgDocument = document.getElementById("svg").getWindow();
+                svgDocument.saveFile = saveFile;
+                svgDocument.browseButton = document.getElementById("browse");
+                svgDocument.focus();
+            }
+
+            function saveFile(tree) {
+                var name = svgDocument.currentFile.replace(/^file:\/\/\//, "");
+                var fso  = new ActiveXObject("Scripting.FileSystemObject");
+                var file = fso.CreateTextFile(name, true);
+
+                file.Write( '<?xml version="1.0" encoding="ISO-8859-1"?>' + "\n" );
+
+                for ( var i = 0; i < tree.length; i++ ) {
+                    file.Write( svgDocument.printNode(tree[i]) );
+                }
+
+                file.Close();
+            }
+            
+            function fileSelected() {
+                var browse = event.srcElement;
+                var name   = "file:///" + browse.value;
+
+                if ( name.match(/\.xml$/i) ) {
+                    svgDocument.loadFile(name);
+                    svgDocument.focus();
+                } else {
+                    alert("Please select a .xml file only");
+                }
+            }
+        </script>
+    </head>
+    <body onload="init()"
+          leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0">
+        <embed id="svg" width="100%" height="100%" src="DAGFilterEditor.svg"/>
+        <div style="position: absolute; top: 0; left: 0; visibility: hidden">
+            <input id="browse" type="file" onchange="fileSelected()"/>
+        </div>
+    </body>
+</html>

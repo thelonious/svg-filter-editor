@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<filter-graph>
+    <nodes>
+        <element id="filter" x="222.47" y="404" type="filter">
+            <input name="id"/>
+            <input name="in"/>
+            <input name="x"/>
+            <input name="y"/>
+            <input name="width"/>
+            <input name="height"/>
+            <output name="result1"/>
+        </element>
+        <element id="composite2" x="197.258" y="338" type="feComposite">
+            <input name="in"/>
+            <input name="in2"/>
+            <input name="operator"/>
+            <output name="result2"/>
+        </element>
+        <element id="composite1" x="176" y="268" type="feComposite">
+            <input name="in"/>
+            <input name="in2"/>
+            <input name="operator"/>
+            <input name="k2"/>
+            <input name="k3"/>
+            <output name="result3"/>
+        </element>
+        <element id="diffuselight" x="85" y="181" type="feDiffuseLighting">
+            <input name="in"/>
+            <input name="light"/>
+            <input name="surfaceScale"/>
+            <input name="diffuseConstant"/>
+            <input name="style"/>
+            <output name="result4"/>
+        </element>
+        <element id="distantlight" x="129" y="120" type="feDistantLight">
+            <input name="azimuth"/>
+            <input name="elevation"/>
+            <output name="result5"/>
+        </element>
+        <element id="gaussian" x="18" y="120" type="feGaussianBlur">
+            <input name="in"/>
+            <input name="stdDeviation"/>
+            <output name="result6"/>
+        </element>
+        <element id="turbulence" x="21" y="73" type="feTurbulence">
+            <input name="type"/>
+            <input name="baseFrequency"/>
+            <input name="numOctaves"/>
+            <output name="result7"/>
+        </element>
+        <literal id="literal1" x="161.065" y="200">SourceGraphic</literal>
+        <literal id="literal2" x="243" y="373">-10%</literal>
+        <literal id="literal3" x="284" y="373">150%</literal>
+        <literal id="literal4" x="11.5414" y="28">turbulence</literal>
+        <literal id="literal5" x="79" y="28">0.15</literal>
+        <literal id="literal6" x="116" y="44">1</literal>
+        <literal id="literal7" x="77.5687" y="90">3</literal>
+        <literal id="literal8" x="170" y="147">10</literal>
+        <literal id="literal9" x="198" y="147">1</literal>
+        <literal id="literal10" x="219" y="145">lighting-color: white</literal>
+        <literal id="literal11" x="151.258" y="81">0</literal>
+        <literal id="literal12" x="180.833" y="81">45</literal>
+        <literal id="literal13" x="221" y="295">SourceGraphic</literal>
+        <literal id="literal14" x="210" y="220">arithmetic</literal>
+        <literal id="literal15" x="244" y="238">0.5</literal>
+        <literal id="literal16" x="278" y="314">in</literal>
+        <literal id="literal17" x="188" y="371">bumpy</literal>
+    </nodes>
+    <edges>
+        <edge output="literal17" input="filter" name="id"/>
+        <edge output="composite2" input="filter" name="in"/>
+        <edge output="literal2" input="filter" name="x"/>
+        <edge output="literal2" input="filter" name="y"/>
+        <edge output="literal3" input="filter" name="width"/>
+        <edge output="literal3" input="filter" name="height"/>
+        <edge output="composite1" input="composite2" name="in"/>
+        <edge output="literal13" input="composite2" name="in2"/>
+        <edge output="literal16" input="composite2" name="operator"/>
+        <edge output="diffuselight" input="composite1" name="in"/>
+        <edge output="literal1" input="composite1" name="in2"/>
+        <edge output="literal14" input="composite1" name="operator"/>
+        <edge output="literal15" input="composite1" name="k2"/>
+        <edge output="literal15" input="composite1" name="k3"/>
+        <edge output="gaussian" input="diffuselight" name="in"/>
+        <edge output="distantlight" input="diffuselight" name="light"/>
+        <edge output="literal8" input="diffuselight" name="surfaceScale"/>
+        <edge output="literal9" input="diffuselight" name="diffuseConstant"/>
+        <edge output="literal10" input="diffuselight" name="style"/>
+        <edge output="literal11" input="distantlight" name="azimuth"/>
+        <edge output="literal12" input="distantlight" name="elevation"/>
+        <edge output="turbulence" input="gaussian" name="in"/>
+        <edge output="literal7" input="gaussian" name="stdDeviation"/>
+        <edge output="literal4" input="turbulence" name="type"/>
+        <edge output="literal5" input="turbulence" name="baseFrequency"/>
+        <edge output="literal6" input="turbulence" name="numOctaves"/>
+    </edges>
+</filter-graph>
