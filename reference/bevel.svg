@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Bevel" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+			<feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5"
+				specularExponent="10" result="specOut"
+				 style="lighting-color:rgb(255,255,255)">
+				<fePointLight x="-5000" y="-10000" z="20000"/>
+			</feSpecularLighting>
+			<feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut2"/>
+			<feComposite in="SourceGraphic" in2="specOut2" operator="arithmetic" k1="0"
+				k2="1" k3="1" k4="0" result="litPaint"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1;filter:url(#Bevel)"/>
+</svg>

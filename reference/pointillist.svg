@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="pointillist" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feTurbulence baseFrequency="0.1" numOctaves="2" type="turbulence" result="I1"/>
+			<feMorphology in="I1" radius="5" operator="dilate" result="I2"/>
+			<feColorMatrix in="I2" type="matrix"
+				values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" result="I3"/>
+			<feComposite in="I3" in2="SourceGraphic" operator="in"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#pointillist);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

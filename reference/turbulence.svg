@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Turbulence" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feTurbulence baseFrequency="0.03 0.02" numOctaves="2" type="turbulence"
+				result="turbulenceOutput"/>
+			<feComposite in="turbulenceOutput" in2="SourceAlpha" operator="in"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#Turbulence);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

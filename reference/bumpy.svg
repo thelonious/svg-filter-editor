@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Bumpy" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feTurbulence type="turbulence" baseFrequency="0.15" numOctaves="1"
+				result="image0"/>
+			<feGaussianBlur stdDeviation="3" in="image0" result="image1"/>
+			<feDiffuseLighting in="image1" surfaceScale="10" diffuseConstant="1"
+				result="image3"
+				 style="lighting-color:rgb(255,255,255)">
+				<feDistantLight azimuth="0" elevation="45"/>
+			</feDiffuseLighting>
+			<feComposite in="image3" in2="SourceGraphic" operator="arithmetic" k2="0.5"
+				k3="0.5" result="image4"/>
+			<feComposite in="image4" in2="SourceGraphic" operator="in" result="image5"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#Bumpy);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

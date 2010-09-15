@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Chrome" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feColorMatrix type="matrix"
+				values="0.3 0.59 0.11 0 0 0.3 0.59 0.11 0 0 0.3 0.59 0.11 0 0 0 0 0 1 0"
+				in="SourceGraphic" result="Greyscale"/>
+			<feGaussianBlur stdDeviation="3" in="Greyscale" result="Blurred"/>
+			<feComponentTransfer in="Blurred" result="Chrome">
+				<feFuncR type="table"
+					tableValues="0.23 0.53 0.41 0.45 0.42 0.48 0.44 0.23 0.65 0.89 0.87 0.64 0.31 0.22 0.26 0.26 0.22 0.23 0.28 0.25 0.23"
+					/>
+				<feFuncG type="table"
+					tableValues="0.23 0.53 0.41 0.45 0.42 0.48 0.44 0.23 0.65 0.89 0.87 0.64 0.31 0.22 0.26 0.26 0.22 0.23 0.28 0.25 0.23"
+					/>
+				<feFuncB type="table"
+					tableValues="0.23 0.53 0.41 0.45 0.42 0.48 0.44 0.23 0.65 0.89 0.87 0.64 0.31 0.22 0.26 0.26 0.22 0.23 0.28 0.25 0.23"
+					/>
+			</feComponentTransfer>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#Chrome);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

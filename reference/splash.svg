@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Splash" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feTurbulence baseFrequency="0.1" numOctaves="2" result="turb"/>
+			<feDisplacementMap in="SourceGraphic" in2="turb" scale="10"
+				xChannelSelector="R" yChannelSelector="G" result="displacedSource"/>
+			<feGaussianBlur in="displacedSource" stdDeviation="2" result="blur"/>
+			<feOffset in="blur" dx="4" dy="4" result="offsetBlurredSource"/>
+			<feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5"
+				specularExponent="10" result="specularOut"
+				 style="lighting-color:rgb(255,255,255)">
+				<fePointLight x="-5000" y="-10000" z="20000"/>
+			</feSpecularLighting>
+			<feComposite in="specularOut" in2="displacedSource" operator="in"
+				result="specularOut2"/>
+			<feComposite in="displacedSource" in2="specularOut2" operator="arithmetic"
+				k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+			<feComposite in="litPaint" in2="offsetBlurredSource" operator="over"/>
+		</filter>
+    </defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#Splash);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

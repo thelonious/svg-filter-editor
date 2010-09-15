@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="wire_outline" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feMorphology result="I1" radius="3" operator="erode" in="SourceAlpha"/>
+			<feComposite result="I2" operator="out" in="SourceAlpha" in2="I1"/>
+			<feGaussianBlur result="I3" in="I2" stdDeviation="3"/>
+			<feComponentTransfer in="I3" result="I4">
+				<feFuncA type="linear" slope="-1" intercept="255"/>
+			</feComponentTransfer>
+			<feDiffuseLighting result="I5" in="I4" surfaceScale="5" diffuseConstant="1"
+				 style="lighting-color:rgb(255,255,255)">
+				<feDistantLight elevation="60" azimuth="30"/>
+			</feDiffuseLighting>
+			<feComposite operator="in" in="I5" in2="I2"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#wire_outline);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

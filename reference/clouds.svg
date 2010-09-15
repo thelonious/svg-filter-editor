@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Clouds" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3"
+				result="I1a0"/>
+			<feDisplacementMap in="I1a0" in2="I1a0" scale="50" xChannelSelector="R"
+				yChannelSelector="G" result="I1a"/>
+			<feColorMatrix in="I1a" type="matrix"
+				values="0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 1" result="I2"/>
+			<feComposite operator="in" in="I2" in2="SourceAlpha" result="I3"/>
+			<feComposite operator="arithmetic" in="I3" in2="SourceGraphic" k2="1" k3="1"
+				result="I5"/>
+			<feComposite operator="in" in="I5" in2="SourceAlpha" result="I6"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#Clouds);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

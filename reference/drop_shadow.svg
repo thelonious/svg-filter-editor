@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="500" height="500">
+	<defs>
+		<filter id="Drop_Shadow" filterUnits="objectBoundingBox" x="-10%" y="-10%"
+			width="150%" height="150%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blurredAlpha"/>
+			<feOffset in="blurredAlpha" dx="3" dy="3" result="offsetBlurredAlpha"/>
+			<feFlood result="flooded" style="flood-color:rgb(0,0,0);flood-opacity:0.65"/>
+			<feComposite in="flooded" operator="in" in2="offsetBlurredAlpha"
+				result="coloredShadow"/>
+			<feComposite in="SourceGraphic" in2="coloredShadow" operator="over"/>
+		</filter>
+	</defs>
+	<ellipse cx="96.5" cy="104.5" rx="69.5" ry="69.5"
+		 style="filter:url(#Drop_Shadow);fill:rgb(0,0,255);stroke:rgb(0,0,0);stroke-width:1"/>
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [
+    <!ATTLIST svg
+              xmlns:a3 CDATA #IMPLIED
+              a3:scriptImplementation CDATA #IMPLIED>
+    <!ATTLIST script
+              a3:scriptImplementation CDATA #IMPLIED>
+]>
+<svg onload="init(evt)"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:a3="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+     a3:scriptImplementation="Adobe">
+    <script type="text/ecmascript" a3:scriptImplementation="Adobe"><![CDATA[
+        function init(e) {
+
+        }
+    ]]></script>
+    <defs>
+		<filter id='fltrAlloy1' filterUnits='objectBoundingBox' x='0' y='0' width='100%' height='100%'>
+		    <feTurbulence type='fractalNoise' 
+		    	baseFrequency='.5,.5' 
+		    	numOctaves='10' seed='13' 
+		    	stitchTiles='noStitch' result="noise"/>
+			<feGaussianBlur in="noise" stdDeviation="20,0.5" result="motionBlur" />
+			<feSpecularLighting in="motionBlur" surfaceScale=".5" specularConstant="1"
+				specularExponent="30" lighting-color="#fff"
+				result="lighting">
+				<fePointLight x="-5000" y="-10000" z="70000"/>
+			</feSpecularLighting>
+			<feComposite in="lighting" in2="SourceAlpha" operator="in"/>
+		</filter>
+		<filter id="fltrShadow2">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="-10,2" result="blur" />
+			<feOffset in="blur" dx="-10" dy="0" />	
+		</filter>		
+    </defs>
+	<g id="gSVG" opacity="1">
+		<g transform="translate(280,350)" filter="url(#fltrShadow2)" opacity="0.75">	
+			<path d="M371.9,0.5l-20,20h-67.3v102.7h64.7V81.8h-48l18.7-18.7h51.3v61.3l-18.7,18.7h-70.7l-18.7-18.7v-104l20-20h88.7z"/>
+			<path d="M246.5,19.8l-42.7,123.3h-23.3L137.2,19.8h-104v41.5h67.2l20.5,20.5v41l-20.3,20.3H1.2l18.7-18.7h78.7V80H29L11.5,62.5V20.2L31.2,0.5h121.3l39.3,116l33.2-96.7h21.5z"/>
+		</g>	
+		<g transform="translate(280,350)" filter="url(#fltrAlloy1)">	
+			<path d="M371.9,0.5l-20,20h-67.3v102.7h64.7V81.8h-48l18.7-18.7h51.3v61.3l-18.7,18.7h-70.7l-18.7-18.7v-104l20-20h88.7z"/>
+			<path d="M246.5,19.8l-42.7,123.3h-23.3L137.2,19.8h-104v41.5h67.2l20.5,20.5v41l-20.3,20.3H1.2l18.7-18.7h78.7V80H29L11.5,62.5V20.2L31.2,0.5h121.3l39.3,116l33.2-96.7h21.5z"/>
+		</g>
+	</g>
+</svg>
