@@ -1,47 +1,39 @@
-/*****
-*
-*   Port.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Port.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 Port.prototype             = new Widget();
 Port.prototype.constructor = Port;
 Port.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class properties
-*
-*****/
+/**
+ *   class properties
+ */
 Port.VERSION = 1.0;
 Port.RADIUS = 2;
 Port.INPUT  = 0;
 Port.OUTPUT = 1;
 
 
-/*****
-*
-*   Constructor
-*
-*****/
+/**
+ *   Constructor
+ */
 function Port(inOrOut, name, type, parent, owner) {
-    if ( arguments.length > 0 ) this.init(inOrOut, name, type, parent, owner);
+    if ( arguments.length > 0 ) {
+        this.init(inOrOut, name, type, parent, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Port.prototype.init = function(inOrOut, name, type, parent, owner) {
     // call superclass method
     Port.superclass.init.call(this, name, owner);
@@ -56,11 +48,9 @@ Port.prototype.init = function(inOrOut, name, type, parent, owner) {
 };
 
 
-/*****
-*
-*   dispose
-*
-*****/
+/**
+ *   dispose
+ */
 Port.prototype.dispose = function() {
     // remove all edges attached to this port
     for ( var i = 0; i < this.edges.length; i++ ) {
@@ -72,11 +62,9 @@ Port.prototype.dispose = function() {
 };
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Port.prototype._createSVG = function(parentNode) {
     var circle = createElement(
         "circle",
@@ -95,11 +83,9 @@ Port.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 Port.prototype._createEventListeners = function() {
     var mouseRegion = this.svgNodes.root;
     
@@ -109,31 +95,25 @@ Port.prototype._createEventListeners = function() {
 };
 
 
-/*****
-*
-*   getValue
-*
-*****/
+/**
+ *   getValue
+ */
 Port.prototype.getValue = function() {
     return this.parent.getValue();
 };
 
 
-/*****
-*
-*   getNode
-*
-*****/
+/**
+ *   getNode
+ */
 Port.prototype.getNode = function(filterNode) {
     return this.parent.toXML(filterNode);
 };
 
 
-/*****
-*
-*   removeEdge
-*
-*****/
+/**
+ *   removeEdge
+ */
 Port.prototype.removeEdge = function(edge) {
     for ( var i = 0; i < this.edges.length; i++ ) {
         if ( edge === this.edges[i] ) {
@@ -144,11 +124,9 @@ Port.prototype.removeEdge = function(edge) {
 };
 
 
-/*****
-*
-*   toXML
-*
-*****/
+/**
+ *   toXML
+ */
 Port.prototype.toXML = function(filterNode, node) {
     if ( this.edges.length > 0 ) {
         this.type.applyToSVGNode(filterNode, node, this);
@@ -156,31 +134,25 @@ Port.prototype.toXML = function(filterNode, node) {
 };
 
 
-/*****
-*
-*   hasEdges
-*
-*****/
+/**
+ *   hasEdges
+ */
 Port.prototype.hasEdges = function() {
     return this.edges.length > 0;
 };
 
 
-/*****
-*
-*   getFirstEdge
-*
-*****/
+/**
+ *   getFirstEdge
+ */
 Port.prototype.getFirstEdge = function() {
     return this.edges[0];
 };
 
 
-/*****
-*
-*   getUserCoordinate
-*
-*****/
+/**
+ *   getUserCoordinate
+ */
 Port.prototype.getUserCoordinate = function() {
     var root  = this.svgNodes.root;
     var nodes = this.owner.svgNodes.nodes;
@@ -195,24 +167,21 @@ Port.prototype.getUserCoordinate = function() {
 };
 
 
-/*****
-*
-*   event handlers
-*
-*****/
+/**
+ *   event handlers
+ */
 
-/*****
-*
-*   select
-*
-*****/
+/**
+ *   select
+ */
 Port.prototype.select = function(value) {
     if ( this.selected != value ) {
         var node = this.svgNodes.root;
 
         if ( value ) {
             node.setAttributeNS(null, "class", "port-selected");
-        } else {
+        }
+        else {
             node.setAttributeNS(null, "class", "port");
         }
         this.selected = value;
@@ -220,11 +189,9 @@ Port.prototype.select = function(value) {
 };
 
 
-/*****
-*
-*   mousedown
-*
-*****/
+/**
+ *   mousedown
+ */
 Port.prototype.mousedown = function(e) {
     if ( e.detail == 1 ) {
         if ( e.ctrlKey ) {
@@ -237,14 +204,16 @@ Port.prototype.mousedown = function(e) {
 
                 this.owner.appendChild(literal);
                 this.owner.connectToInput(literal.output, this);
-            } else {
+            }
+            else {
                 for ( var i = 0; i < this.edges.length; i++ ) {
                     this.edges[i].dispose(this);
                 }
 
                 this.edges = [];
             }
-        } else {
+        }
+        else {
             if ( this.selected == false ) {
                 if ( this.owner.port != null ) {
                     if ( this.owner.port.inOrOut != this.inOrOut ) {
@@ -253,7 +222,8 @@ Port.prototype.mousedown = function(e) {
                         if ( this.inOrOut == Port.INPUT ) {
                             inPort  = this;
                             outPort = this.owner.port;
-                        } else {
+                        }
+                        else {
                             inPort  = this.owner.port;
                             outPort = this;
                         }
@@ -261,16 +231,19 @@ Port.prototype.mousedown = function(e) {
 
                         this.owner.port.select(false);
                         this.owner.port = null
-                    } else {
+                    }
+                    else {
                         // should throw exception or at least show an error
                     }
-                } else {
+                }
+                else {
                     this.owner.port = this;
                     this.select(true);
                 }
             }
         }
-    } else if ( e.detail == 2 ) {
+    }
+    else if ( e.detail == 2 ) {
         var newName = prompt("Output Port Name", this.name);
 
         if (newName != null && newName != "" ) {
@@ -281,37 +254,33 @@ Port.prototype.mousedown = function(e) {
 };
 
 
-/*****
-*
-*   mouseover
-*
-*****/
+/**
+ *   mouseover
+ */
 Port.prototype.mouseover = function(e) {
     this.owner.infobar.setLabel( this.name );
 };
 
 
-/*****
-*
-*   _set_cx
-*
-*****/
+/**
+ *   _set_cx
+ */
 Port.prototype._set_cx = function() {
     var root = this.svgNodes.root;
 
-    if ( root != null )
+    if ( root != null ) {
         root.setAttributeNS(null, "cx", this.cx);
+    }
 };
 
 
-/*****
-*
-*   _set_cy
-*
-*****/
+/**
+ *   _set_cy
+ */
 Port.prototype._set_cy = function() {
     var root = this.svgNodes.root;
 
-    if ( root != null )
+    if ( root != null ) {
         root.setAttributeNS(null, "cy", this.cy);
+    }
 };

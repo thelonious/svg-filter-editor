@@ -1,55 +1,45 @@
-/*****
-*
-*   Interval.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Interval.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Interval.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Interval(lo, hi) {
-    if ( arguments.length > 0 ) this.init(lo, hi);
+    if ( arguments.length > 0 ) {
+        this.init(lo, hi);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Interval.prototype.init = function(lo, hi) {
     this.lo = Math.min(lo, hi);
     this.hi = Math.max(lo, hi);
 };
 
 
-/*****
-*
-*   contains
-*
-*****/
+/**
+ *   contains
+ */
 Interval.prototype.contains = function(value) {
     return this.lo <= value && value <= this.hi;
 }
 
 
-/*****
-*
-*   isOverlapping
-*
-*****/
+/**
+ *   isOverlapping
+ */
 Interval.prototype.isOverlapping = function(that) {
     return (
         this.contains(that.lo) ||

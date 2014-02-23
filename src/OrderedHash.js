@@ -1,62 +1,52 @@
-/*****
-*
-*   OrderedHash.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   OrderedHash.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 OrderedHash.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function OrderedHash() {
     //if ( arguments.length > 0 ) this.init();
     this.init();
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 OrderedHash.prototype.init = function() {
     this.elements = {};
     this.keys     = [];
 };
 
 
-/*****
-*
-*   getItem
-*
-*****/
+/**
+ *   getItem
+ */
 OrderedHash.prototype.getItem = function(index) {
-    if ( index < 0 || this.keys.length <= index )
+    if ( index < 0 || this.keys.length <= index ) {
         throw "OrderedHash::getItem - index out of range: " + index;
+    }
 
     return this.elements[ this.keys[index] ];
 };
 
 
-/*****
-*
-*   setItem
-*
-*****/
+/**
+ *   setItem
+ */
 OrderedHash.prototype.setItem = function(index, value) {
-    if ( index < 0 || this.keys.length <= index )
+    if ( index < 0 || this.keys.length <= index ) {
         throw "OrderedHash::setItem - index out of range: " + index;
+    }
 
     this.elements[ this.keys[index] ] = value;
 
@@ -64,26 +54,25 @@ OrderedHash.prototype.setItem = function(index, value) {
 };
 
 
-/*****
-*
-*   getNamedItem
-*
-*****/
+/**
+ *   getNamedItem
+ */
 OrderedHash.prototype.getNamedItem = function(key) {
-    if ( this.elements[key] == null )
+    if ( this.elements[key] == null ) {
         throw "OrderedHash::getNamedItem - key does not exist: " + key;
+    }
 
     return this.elements[key];
 };
 
 
-/*****
-*
-*   setNamedItem
-*
-*****/
+/**
+ *   setNamedItem
+ */
 OrderedHash.prototype.setNamedItem = function(key, value) {
-    if ( this.elements[key] == null ) this.keys.push(key);
+    if ( this.elements[key] == null ) {
+        this.keys.push(key);
+    }
 
     this.elements[key] = value;
 
@@ -91,11 +80,9 @@ OrderedHash.prototype.setNamedItem = function(key, value) {
 };
 
 
-/*****
-*
-*   getLength
-*
-*****/
+/**
+ *   getLength
+ */
 OrderedHash.prototype.getLength = function() {
     return this.keys.length;
 };

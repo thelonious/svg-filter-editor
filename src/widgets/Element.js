@@ -1,26 +1,20 @@
-/*****
-*
-*   Element.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Element.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 Element.prototype             = new DAGNode();
 Element.prototype.constructor = Element;
 Element.superclass            = DAGNode.prototype;
 
 
-/*****
-*
-*   class properties
-*
-*****/
+/**
+ *   class properties
+ */
 Element.VERSION        = 1.0;
 Element.PADDING_TOP    = 4;
 Element.PADDING_BOTTOM = 4;
@@ -28,21 +22,19 @@ Element.PADDING_LEFT   = 15;
 Element.PADDING_RIGHT  = 15;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Element(interface, owner) {
-    if ( arguments.length > 0 ) this.init(interface, owner);
+    if ( arguments.length > 0 ) {
+        this.init(interface, owner);
+    }
 }
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Element.prototype._createSVG = function(parentNode) {
     // call superclass method
     Element.superclass._createSVG.call(this, parentNode);
@@ -52,7 +44,8 @@ Element.prototype._createSVG = function(parentNode) {
     var tx, ty;
     
     this.svgNodes.label = createElement(
-        "text", { "class": "element-label" }, this.name);
+        "text", { "class": "element-label" }, this.name
+    );
     labelBBox = this.svgNodes.label.getBBox();
 
     // set width and height
@@ -108,11 +101,9 @@ Element.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   update
-*
-*****/
+/**
+ *   update
+ */
 Element.prototype.update = function() {
     // update the element's position
     var root = this.svgNodes.root;
@@ -131,15 +122,15 @@ Element.prototype.update = function() {
 };
 
 
-/*****
-*
-*   toXML
-*
-*****/
+/**
+ *   toXML
+ */
 Element.prototype.toXML = function(filterNode) {
     var node = svgDocument.createElementNS(svgNS, this.interface.name);
 
-    if ( filterNode == null ) filterNode = node;
+    if ( filterNode == null ) {
+        filterNode = node;
+    }
 
     for ( var j = 0; j < this.inputs.getLength(); j++ ) {
         this.inputs.getItem(j).toXML(filterNode, node);
@@ -149,11 +140,9 @@ Element.prototype.toXML = function(filterNode) {
 };
 
 
-/*****
-*
-*   _toXML
-*
-*****/
+/**
+ *   _toXML
+ */
 Element.prototype._toXML = function(parent) {
     // call superclass method
     var node = Element.superclass._toXML.call(this, parent);
@@ -172,34 +161,29 @@ Element.prototype._toXML = function(parent) {
 };
 
 
-/*****
-*
-*   _createXMLNode
-*
-*****/
+/**
+ *   _createXMLNode
+ */
 Element.prototype._createXMLNode = function() {
     return svgDocument.createElementNS(null, "element");
 };
 
 
-/*****
-*
-*   event handlers
-*
-*****/
+/**
+ *   event handlers
+ */
 
-/*****
-*
-*   select
-*
-*****/
+/**
+ *   select
+ */
 Element.prototype.select = function(value) {
     if ( this.selected != value ) {
         var node = this.svgNodes.background;
 
         if ( value ) {
             node.setAttributeNS(null, "class", "element-selected");
-        } else {
+        }
+        else {
             node.setAttributeNS(null, "class", "element");
         }
         this.selected = value;

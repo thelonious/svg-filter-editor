@@ -1,45 +1,35 @@
-/*****
-*
-*   Selection.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Selection.js
+ *
+ *   copyright 2002, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Selection.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Selection(owner) {
     if ( arguments.length > 0 ) this.init(owner);
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Selection.prototype.init = function(owner) {
     this.owner    = owner;
     this.children = [];
 };
 
 
-/*****
-*
-*   selectChild
-*
-*****/
+/**
+ *   selectChild
+ */
 Selection.prototype.selectChild = function(elem) {
     // NOTE: should make sure not already in selection
 
@@ -48,11 +38,9 @@ Selection.prototype.selectChild = function(elem) {
 };
 
 
-/*****
-*
-*   deselectChild
-*
-*****/
+/**
+ *   deselectChild
+ */
 Selection.prototype.deselectChild = function(elem) {
     for ( var i = 0; i < this.children.length; i++ ) {
         if ( elem === this.children[i] ) {
@@ -64,16 +52,14 @@ Selection.prototype.deselectChild = function(elem) {
 };
 
 
-/*****
-*
-*   deselectAll
-*
-*   NOTE: It would be "cleaner" to call deselectChild on each child in the
-*   selection, but since the deselection logic is so simple, it seems better
-*   (faster) to recreate the logic here.  This avoids the potential multiple
-*   calls to splice (one for each child) in deselectChild
-*
-*****/
+/**
+ *   deselectAll
+ *
+ *   NOTE: It would be "cleaner" to call deselectChild on each child in the
+ *   selection, but since the deselection logic is so simple, it seems better
+ *   (faster) to recreate the logic here.  This avoids the potential multiple
+ *   calls to splice (one for each child) in deselectChild
+ */
 Selection.prototype.deselectAll = function() {
     for ( var i = 0; i < this.children.length; i++ ) {
         this.children[i].select(false);
@@ -83,24 +69,19 @@ Selection.prototype.deselectAll = function() {
 };
 
 
-/*****
-*
-*   clearSelection
-*
-*****/
+/**
+ *   clearSelection
+ */
 Selection.prototype.clearSelection = function() {
     this.children = [];
 };
 
 
-/*****
-*
-*   foreachChild
-*
-*****/
+/**
+ *   foreachChild
+ */
 Selection.prototype.foreachChild = function(func) {
     for ( var i = 0; i < this.children.length; i++ ) {
         func( this.children[i] );
     }
 };
-

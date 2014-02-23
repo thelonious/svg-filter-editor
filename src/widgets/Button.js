@@ -1,44 +1,36 @@
-/*****
-*
-*   Button.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Button.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 Button.prototype             = new Widget();
 Button.prototype.constructor = Button;
 Button.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Button.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Button(name, label, owner) {
-    if ( arguments.length > 0 ) this.init(name, label, owner);
+    if ( arguments.length > 0 ) {
+        this.init(name, label, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Button.prototype.init = function(name, label, owner) {
     // call superclass method
     Button.superclass.init.call(this, name, owner);
@@ -48,11 +40,9 @@ Button.prototype.init = function(name, label, owner) {
 };
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Button.prototype._createSVG = function(parentNode) {
     // call superclass method
     Button.superclass._createSVG.call(this, parentNode);
@@ -101,11 +91,9 @@ Button.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 Button.prototype._createEventListeners = function() {
     this.addEventListener("mousedown", this, false);
     this.addEventListener("mouseup", this, false);
@@ -113,23 +101,19 @@ Button.prototype._createEventListeners = function() {
 };
 
 
-/***** Event Handlers *****/
+/** Event Handlers */
 
-/*****
-*
-*   mousedown
-*
-*****/
+/**
+ *   mousedown
+ */
 Button.prototype.mousedown = function(e) {
     this.select(true);
 };
 
 
-/*****
-*
-*   mouseup
-*
-*****/
+/**
+ *   mouseup
+ */
 Button.prototype.mouseup = function(e) {
     if ( this.selected ) {
         var elem= this.owner.createElementWithDefaults(this.name);
@@ -143,28 +127,25 @@ Button.prototype.mouseup = function(e) {
 };
 
 
-/*****
-*
-*   mouseout
-*
-*****/
+/**
+ *   mouseout
+ */
 Button.prototype.mouseout = function(e) {
     this.select(false);
 };
 
 
-/*****
-*
-*   select
-*
-*****/
+/**
+ *   select
+ */
 Button.prototype.select = function(value) {
     if ( this.selected != value ) {
         var node = this.svgNodes.background;
 
         if ( value ) {
             node.setAttributeNS(null, "class", "button-selected");
-        } else {
+        }
+        else {
             node.setAttributeNS(null, "class", "button");
         }
         this.selected = value;

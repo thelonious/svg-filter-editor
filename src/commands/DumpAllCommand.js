@@ -1,44 +1,36 @@
-/*****
-*
-*   DumpAllCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   DumpAllCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 DumpAllCommand.prototype             = new Command();
 DumpAllCommand.prototype.constructor = DumpAllCommand;
 DumpAllCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 DumpAllCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function DumpAllCommand(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 DumpAllCommand.prototype.doit = function() {
     var tmpFile = currentFile;
 

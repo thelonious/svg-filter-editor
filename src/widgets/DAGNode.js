@@ -1,45 +1,37 @@
-/*****
-*
-*   DAGNode.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   DAGNode.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 DAGNode.prototype             = new Widget();
 DAGNode.prototype.constructor = DAGNode;
 DAGNode.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 DAGNode.VERSION = 1.0;
 DAGNode.counter = 1;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function DAGNode(interface, owner) {
-    if ( arguments.length > 0 ) this.init(interface, owner);
+    if ( arguments.length > 0 ) {
+        this.init(interface, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 DAGNode.prototype.init = function(interface, owner) {
     // call superclass method
     DAGNode.superclass.init.call(this, interface.label, owner);
@@ -51,49 +43,48 @@ DAGNode.prototype.init = function(interface, owner) {
 };
 
 
-/*****
-*
-*   dispose
-*
-*****/
+/**
+ *   dispose
+ */
 DAGNode.prototype.dispose = function() {
     // remove all input ports
     for ( var i = 0; i < this.inputs.getLength(); i++ ) {
         var port = this.inputs.getItem(i);
 
-        if ( port != null ) port.dispose();
+        if ( port != null ) {
+            port.dispose();
+        }
     }
 
     // remove output port
-    if ( this.output != null ) this.output.dispose();
+    if ( this.output != null ) {
+        this.output.dispose();
+    }
 
     // call superclass method
     DAGNode.superclass.dispose.call(this);
 };
 
 
-/*****
-*
-*   realize
-*
-*****/
+/**
+ *   realize
+ */
 DAGNode.prototype.realize = function(parentNode) {
     // call superclass method
     DAGNode.superclass.realize.call(this, parentNode);
 
-    for ( var i = 0; i < this.inputs.getLength(); i++ )
+    for ( var i = 0; i < this.inputs.getLength(); i++ ) {
         this.inputs.getItem(i).realize(this.svgNodes.root);
+    }
     this.distributeInputs();
 
     this._createOutputs();
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 DAGNode.prototype._createEventListeners = function() {
     var mouseRegion = this.svgNodes.mouseRegion;
     
@@ -101,22 +92,22 @@ DAGNode.prototype._createEventListeners = function() {
 };
 
 
-/*****
-*
-*   addInput
-*
-*****/
+/**
+ *   addInput
+ */
 DAGNode.prototype.addInput = function(name) {
     var root = this.svgNodes.root;
     var typeName = this.interface.getInputType(name);
 
-    if ( typeName == null )
+    if ( typeName == null ) {
         throw "Unsupported input port name: " + name;
+    }
 
     var type = this.owner.types[typeName];
 
-    if ( type == null )
+    if ( type == null ) {
         throw "The " + name + " input port uses unknown type " + type;
+    }
 
     var port = new Port(Port.INPUT, name, type, this, this.owner);
     
@@ -129,11 +120,9 @@ DAGNode.prototype.addInput = function(name) {
 };
 
 
-/*****
-*
-*   distributeInputs
-*
-*****/
+/**
+ *   distributeInputs
+ */
 DAGNode.prototype.distributeInputs = function() {
     var count = this.inputs.getLength();
     var bbox  = this.svgNodes.mouseRegion.getBBox();
@@ -148,19 +137,19 @@ DAGNode.prototype.distributeInputs = function() {
 };
 
 
-/*****
-*
-*   _createOutputs
-*
-*****/
+/**
+ *   _createOutputs
+ */
 DAGNode.prototype._createOutputs = function() {
     var name;
     
     if ( this.constructor === Element ) {
         name = "result" + DAGNode.counter++;
-    } else if ( this.constructor === Literal ) {
+    }
+    else if ( this.constructor === Literal ) {
         name = this.name;
-    } else {
+    }
+    else {
         throw "Unknown DAGNode class in _createOutputs";
     }
 
@@ -170,11 +159,9 @@ DAGNode.prototype._createOutputs = function() {
 };
 
 
-/*****
-*
-*   centerOutput
-*
-*****/
+/**
+ *   centerOutput
+ */
 DAGNode.prototype.centerOutput = function() {
     if ( this.output != null ) {
         var bbox = this.svgNodes.mouseRegion.getBBox();
@@ -187,11 +174,9 @@ DAGNode.prototype.centerOutput = function() {
 };
 
 
-/*****
-*
-*   moveto
-*
-*****/
+/**
+ *   moveto
+ */
 DAGNode.prototype.moveto = function(x, y) {
     this.x = x;
     this.y = y;
@@ -199,11 +184,9 @@ DAGNode.prototype.moveto = function(x, y) {
 };
 
 
-/*****
-*
-*   rmoveto
-*
-*****/
+/**
+ *   rmoveto
+ */
 DAGNode.prototype.rmoveto = function(dx, dy) {
     this.x += dx;
     this.y += dy;
@@ -211,16 +194,16 @@ DAGNode.prototype.rmoveto = function(dx, dy) {
 };
 
 
-/*****
-*
-*   update
-*
-*****/
+/**
+ *   update
+ */
 DAGNode.prototype.update = function() {
     for ( var i = 0; i < this.inputs.getLength(); i++ ) {
         var edge = this.inputs.getItem(i).edges[0];
 
-        if ( edge != null ) edge.updateOutput();
+        if ( edge != null ) {
+            edge.updateOutput();
+        }
     }
 
     if ( this.output != null ) {
@@ -229,27 +212,25 @@ DAGNode.prototype.update = function() {
         for ( var i = 0; i < edges.length; i++ ) {
             var edge = edges[i];
 
-            if ( edge != null ) edge.updateInput();
+            if ( edge != null ) {
+                edge.updateInput();
+            }
         }
     }
 };
 
 
-/*****
-*
-*   getValue
-*
-*****/
+/**
+ *   getValue
+ */
 DAGNode.prototype.getValue = function() {
     // abstract method
 };
 
 
-/*****
-*
-*   _toXML
-*
-*****/
+/**
+ *   _toXML
+ */
 DAGNode.prototype._toXML = function(parent) {
     var node = this._createXMLNode();
 
@@ -281,37 +262,36 @@ DAGNode.prototype._toXML = function(parent) {
 };
 
 
-/*****
-*
-*   _createXMLNode
-*
-*****/
+/**
+ *   _createXMLNode
+ */
 DAGNode.prototype._createXMLNode = function() {
     // abstract method
 };
 
 
-/***** Event Handlers *****/
+/** Event Handlers */
 
-/*****
-*
-*   mousedown
-*
-*****/
+/**
+ *   mousedown
+ */
 DAGNode.prototype.mousedown = function(e) {
     var owner = this.owner;
 
     if ( e.shiftKey ) {
         if ( this.selected ) {
             owner.deselectChild("nodes", this);
-        } else {
+        }
+        else {
             owner.selectChild("nodes", this);
             owner.dragSelection(e);
         }
-    } else {
+    }
+    else {
         if ( this.selected ) {
             owner.dragSelection(e);
-        } else {
+        }
+        else {
             owner.deselectAll("nodes");
             owner.selectChild("nodes", this);
             owner.dragSelection(e);

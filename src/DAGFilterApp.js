@@ -1,37 +1,31 @@
-/*****
-*
-*   DAGFilterApp.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   DAGFilterApp.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 DAGFilterApp.VERSION = 1.0;
 DAGFilterApp.NOTLOADED = 0;
 DAGFilterApp.LOADING   = 1;
 DAGFilterApp.LOADED    = 2;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function DAGFilterApp(parent) {
-    if ( arguments.length > 0 ) this.init(parent);
+    if ( arguments.length > 0 ) {
+        this.init(parent);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 DAGFilterApp.prototype.init = function(parent) {
     var root;
 
@@ -128,11 +122,9 @@ DAGFilterApp.prototype.init = function(parent) {
 };
 
 
-/*****
-*
-*   makeButtons
-*
-*****/
+/**
+ *   makeButtons
+ */
 DAGFilterApp.prototype.makeButtons = function() {
     // button panel
     var buttonWidth  = 120;
@@ -152,9 +144,15 @@ DAGFilterApp.prototype.makeButtons = function() {
             labelA = interfaces[a].label;
             labelB = interfaces[b].label;
             
-            if ( labelA <  labelB ) return -1;
-            if ( labelA == labelB ) return 0;
-            if ( labelA >  labelB ) return 1;
+            if ( labelA <  labelB ) {
+                return -1;
+            }
+            if ( labelA == labelB ) {
+                return 0;
+            }
+            if ( labelA >  labelB ) {
+                return 1;
+            }
         }
     );
     for ( var i = 0; i < keys.length; i++ ) {
@@ -172,22 +170,45 @@ DAGFilterApp.prototype.makeButtons = function() {
 };
 
 
-/*****
-*
-*   loadSetup
-*
-*****/
+/**
+ *   loadSetup
+ */
 DAGFilterApp.prototype.loadSetup = function() {
     getURL("DAGFilterEditor.xml", this);
     this.loadState = DAGFilterApp.LOADING;
 };
 
+function getURL(url, target) {
+    var request;
 
-/*****
-*
-*   operationComplete
-*
-*****/
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        request = new XMLHttpRequest();
+    }
+    else {
+        // code for IE6, IE5
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            var status = {
+                success: true,
+                content: request.responseText
+            }
+            
+            alert(status);
+            target.operationComplete(status);
+        }
+    }
+
+    request.open("GET", url, true);
+    request.send();
+}
+
+/**
+ *   operationComplete
+ */
 DAGFilterApp.prototype.operationComplete = function(status) {
     if ( status.success ) {
         var setup = parseXML(status.content);
@@ -199,17 +220,16 @@ DAGFilterApp.prototype.operationComplete = function(status) {
             this.interfaces[interface.name] = interface;
         }
         this.loadState = DAGFilterApp.LOADED;
-    } else {
+    }
+    else {
         throw "Unable to load DAGFilterEditor.xml";
     }
 };
 
 
-/*****
-*
-*   createGraph
-*
-*****/
+/**
+ *   createGraph
+ */
 DAGFilterApp.prototype.createGraph = function(doc) {
     var elements = doc.getElementsByTagNameNS(null, "element");
     var literals = doc.getElementsByTagNameNS(null, "literal");
@@ -223,8 +243,9 @@ DAGFilterApp.prototype.createGraph = function(doc) {
     this.clearScreen();
     
     // reset all interface counters
-    for ( var i = 0; i < this.interfaces.length; i++)
+    for ( var i = 0; i < this.interfaces.length; i++) {
         this.interfaces[i].resetCounter();
+    }
     this.literalId = 1;
 
     // create elements
@@ -284,11 +305,9 @@ DAGFilterApp.prototype.createGraph = function(doc) {
 };
 
 
-/*****
-*
-*   clearDocument
-*
-*****/
+/**
+ *   clearDocument
+ */
 DAGFilterApp.prototype.clearDocument = function() {
     // remove all existing nodes
     this.selectAll();
@@ -296,11 +315,9 @@ DAGFilterApp.prototype.clearDocument = function() {
 };
 
 
-/*****
-*
-*   clearScreen
-*
-*****/
+/**
+ *   clearScreen
+ */
 DAGFilterApp.prototype.clearScreen = function() {
     // remove all filters
     var filters = svgDocument.getElementsByTagNameNS(svgNS, "filter");
@@ -312,18 +329,18 @@ DAGFilterApp.prototype.clearScreen = function() {
 
     // remove all samples
     var samples = this.svgNodes.samples;
-    while ( samples.firstChild ) samples.removeChild( samples.firstChild );
+    while ( samples.firstChild ) {
+        samples.removeChild( samples.firstChild );
+    }
 
     // clear console;
     this.console.clear();
 };
 
 
-/*****
-*
-*   createXML
-*
-*****/
+/**
+ *   createXML
+ */
 DAGFilterApp.prototype.createXML = function() {
     var filterGraph  = svgDocument.createElementNS(null, "filter-graph");
     var nodes        = svgDocument.createElementNS(null, "nodes");
@@ -340,11 +357,9 @@ DAGFilterApp.prototype.createXML = function() {
 };
 
 
-/*****
-*
-*   graphToSVG
-*
-*****/
+/**
+ *   graphToSVG
+ */
 DAGFilterApp.prototype.graphToSVG = function() {
     // clear the display
     this.clearScreen();
@@ -369,11 +384,9 @@ DAGFilterApp.prototype.graphToSVG = function() {
 };
 
 
-/*****
-*
-*   showFilter
-*
-*****/
+/**
+ *   showFilter
+ */
 DAGFilterApp.prototype.showFilter = function(filter) {
     var r      = 25;
     var pad    = 5;
@@ -393,14 +406,16 @@ DAGFilterApp.prototype.showFilter = function(filter) {
 
     if ( defss.length > 0 ) {
         defs = defss.item(0);
-    } else {
+    }
+    else {
         var svgRoot = svgDocument.rootElement;
 
         defs = createElement("defs");
 
         if ( svgRoot.hasChildNodes() ) {
             svgRoot.insertBefore(defs, svgRoot.firstChild);
-        } else {
+        }
+        else {
             svgRoot.appendChild(defs);
         }
     }
@@ -412,26 +427,23 @@ DAGFilterApp.prototype.showFilter = function(filter) {
 };
 
 
-/*****
-*
-*   createElement
-*
-*****/
+/**
+ *   createElement
+ */
 DAGFilterApp.prototype.createElement = function(name) {
     var interface = this.interfaces[name];
 
-    if ( interface == null )
+    if ( interface == null ) {
         throw "Unrecognized filter name: " + name;
+    }
 
     return new Element(interface, this);
 };
 
 
-/*****
-*
-*   createElementWithDefaults
-*
-*****/
+/**
+ *   createElementWithDefaults
+ */
 DAGFilterApp.prototype.createElementWithDefaults = function(name) {
     var elem   = this.createElement(name);
     var inputs = elem.interface.getInputsByGroupName("default");
@@ -452,11 +464,9 @@ DAGFilterApp.prototype.createElementWithDefaults = function(name) {
 };
 
 
-/*****
-*
-*   createLiteral
-*
-*****/
+/**
+ *   createLiteral
+ */
 DAGFilterApp.prototype.createLiteral = function(text) {
     var interface = new Interface("string", text);
     
@@ -464,11 +474,9 @@ DAGFilterApp.prototype.createLiteral = function(text) {
 };
 
 
-/*****
-*
-*   createLiteralWithDefaults
-*
-*****/
+/**
+ *   createLiteralWithDefaults
+ */
 DAGFilterApp.prototype.createLiteralWithDefaults = function(text) {
     var literal = this.createLiteral(text);
 
@@ -482,11 +490,9 @@ DAGFilterApp.prototype.createLiteralWithDefaults = function(text) {
 };
 
 
-/*****
-*
-*   appendChild
-*
-*****/
+/**
+ *   appendChild
+ */
 DAGFilterApp.prototype.appendChild = function(elem) {
     elem.realize( this.svgNodes.nodes );
     this.nodes.push(elem);
@@ -494,11 +500,9 @@ DAGFilterApp.prototype.appendChild = function(elem) {
 };
 
 
-/*****
-*
-*   removeChild
-*
-*****/
+/**
+ *   removeChild
+ */
 DAGFilterApp.prototype.removeChild = function(elem) {
     for ( var i = 0; i < this.nodes.length; i++ ) {
         if ( this.nodes[i] === elem ) {
@@ -510,43 +514,39 @@ DAGFilterApp.prototype.removeChild = function(elem) {
 };
 
 
-/*****  Selection methods  *****/
+/**  Selection methods  */
 
-/*****
-*
-*   selectChild
-*
-*****/
+/**
+ *   selectChild
+ */
 DAGFilterApp.prototype.selectChild = function(name, widget) {
     var selection = this.selections[name];
 
-    if ( selection == null )
+    if ( selection == null ) {
         throw "Selection name does not exist: " + name;
+    }
 
     selection.selectChild(widget);
 };
 
 
-/*****
-*
-*   deselectChild
-*
-*****/
+/**
+ *   deselectChild
+ */
 DAGFilterApp.prototype.deselectChild = function(name, widget) {
     var selection = this.selections[name];
 
-    if ( selection == null )
+    if ( selection == null ) {
         throw "Selection name does not exist: " + name;
+    }
 
     selection.deselectChild(widget);
 };
 
 
-/*****
-*
-*   selectAll
-*
-*****/
+/**
+ *   selectAll
+ */
 DAGFilterApp.prototype.selectAll = function() {
     for ( var i = 0; i < this.nodes.length; i++ ) {
         var node = this.nodes[i];
@@ -558,20 +558,20 @@ DAGFilterApp.prototype.selectAll = function() {
 };
 
 
-/*****
-*
-*   deselectAll
-*
-*****/
+/**
+ *   deselectAll
+ */
 DAGFilterApp.prototype.deselectAll = function(name) {
     if ( name != null ) {
         var selection = this.selections[name];
 
-        if ( selection == null )
+        if ( selection == null ) {
             throw "Selection name does not exist: " + name;
+        }
 
         selection.deselectAll();
-    } else {
+    }
+    else {
         for ( var key in this.selections ) {
             this.selections[key].deselectAll();
         }
@@ -579,11 +579,9 @@ DAGFilterApp.prototype.deselectAll = function(name) {
 };
 
 
-/*****
-*
-*   dragSelection
-*
-*****/
+/**
+ *   dragSelection
+ */
 DAGFilterApp.prototype.dragSelection = function(e) {
     this.dragMode = "nodes";
     this.foreground.addEventListener("drag",    this, false);
@@ -592,26 +590,23 @@ DAGFilterApp.prototype.dragSelection = function(e) {
 };
 
 
-/*****
-*
-*   duplicateSelection
-*
-*****/
+/**
+ *   duplicateSelection
+ */
 DAGFilterApp.prototype.duplicateSelection = function() {
 
 };
 
 
-/*****
-*
-*   deleteSelection
-*
-*****/
+/**
+ *   deleteSelection
+ */
 DAGFilterApp.prototype.deleteSelection = function(name) {
     var selection = this.selections[name];
 
-    if ( selection == null )
+    if ( selection == null ) {
         throw "Selection name does not exist: " + name;
+    }
 
     selection.foreachChild(
         function(node) {
@@ -623,11 +618,9 @@ DAGFilterApp.prototype.deleteSelection = function(name) {
 };
 
 
-/*****
-*
-*   dragMarquee
-*
-*****/
+/**
+ *   dragMarquee
+ */
 DAGFilterApp.prototype.dragMarquee = function(e) {
     this.dragMode = "marquee";
     this.foreground.addEventListener("dragbegin", this, false);
@@ -637,11 +630,9 @@ DAGFilterApp.prototype.dragMarquee = function(e) {
 };
 
 
-/*****
-*
-*   connectToInput
-*
-*****/
+/**
+ *   connectToInput
+ */
 DAGFilterApp.prototype.connectToInput = function(outPort, inPort) {
     var edge = new Edge(outPort, inPort, this);
 
@@ -649,11 +640,9 @@ DAGFilterApp.prototype.connectToInput = function(outPort, inPort) {
 };
 
 
-/*****
-*
-*   toXML
-*
-*****/
+/**
+ *   toXML
+ */
 DAGFilterApp.prototype.toXML = function() {
     var trees = [];
 
@@ -673,26 +662,23 @@ DAGFilterApp.prototype.toXML = function() {
 };
 
 
-/*****  Event Handlers  *****/
+/**  Event Handlers  */
 
-/*****
-*
-*   handleEvent
-*
-*****/
+/**
+ *   handleEvent
+ */
 DAGFilterApp.prototype.handleEvent = function(e) {
-    if ( this[e.type] == null )
-        throw "Unsuppoted event: " + e.type;
+    if ( this[e.type] == null ) {
+        throw "Unsupported event: " + e.type;
+    }
 
     this[e.type](e);
 };
 
 
-/*****
-*
-*   keydown
-*
-*****/
+/**
+ *   keydown
+ */
 DAGFilterApp.prototype.keydown = function(e) {
     // Dont't process keydowns if a textbox is currently active
     if ( this.textbox == null ) {
@@ -715,10 +701,13 @@ DAGFilterApp.prototype.keydown = function(e) {
                         parent.rmoveto(diffX, 0);
                         this.selections.nodes.foreachChild(
                             function(node) {
-                                if ( node !== parent ) node.rmoveto(diffX, 0);
+                                if ( node !== parent ) {
+                                    node.rmoveto(diffX, 0);
+                                }
                             }
                         );
-                    } else {
+                    }
+                    else {
                         var p1     = this.port.getUserCoordinate();
                         var count  = this.port.edges.length;
                         var parent = this.port.parent;
@@ -730,7 +719,8 @@ DAGFilterApp.prototype.keydown = function(e) {
 
                             if ( this.port.inOrOut == Port.INPUT ) {
                                 sumX += edge.inPort.getUserCoordinate().x;
-                            } else {
+                            }
+                            else {
                                 sumX += edge.outPort.getUserCoordinate().x;
                             }
                         }
@@ -738,7 +728,9 @@ DAGFilterApp.prototype.keydown = function(e) {
                         parent.rmoveto(diffX, 0);
                         this.selections.nodes.foreachChild(
                             function(node) {
-                                if ( node !== parent ) node.rmoveto(diffX, 0);
+                                if ( node !== parent ) {
+                                    node.rmoveto(diffX, 0);
+                                }
                             }
                         );
                     }
@@ -802,7 +794,8 @@ DAGFilterApp.prototype.keydown = function(e) {
 
                     if ( e.shiftKey || currentFile == "" ) {
                         cmd = new SaveAsCommand(this);
-                    } else {
+                    }
+                    else {
                         cmd = new SaveCommand(this);
                     }
                 }
@@ -812,22 +805,20 @@ DAGFilterApp.prototype.keydown = function(e) {
 };
 
 
-/*****
-*
-*   keypress
-*
-*****/
+/**
+ *   keypress
+ */
 DAGFilterApp.prototype.keypress = function(e) {
     // pass on this keydown if a textbox is currently active
-    if ( this.textbox != null ) this.textbox.keypress(e);
+    if ( this.textbox != null ) {
+        this.textbox.keypress(e);
+    }
 };
 
 
-/*****
-*
-*   dragbegin
-*
-*****/
+/**
+ *   dragbegin
+ */
 DAGFilterApp.prototype.dragbegin = function(e) {
     if ( this.dragMode == "marquee") {
         var node   = this.svgNodes.nodes;
@@ -842,11 +833,9 @@ DAGFilterApp.prototype.dragbegin = function(e) {
 };
 
 
-/*****
-*
-*   drag
-*
-*****/
+/**
+ *   drag
+ */
 DAGFilterApp.prototype.drag = function(e) {
     if ( this.dragMode == "nodes" ) {
         var node  = this.svgNodes.nodes;
@@ -855,9 +844,11 @@ DAGFilterApp.prototype.drag = function(e) {
         var diffX = curr.x - last.x;
         var diffY = curr.y - last.y;
 
-        if ( diffX != 0 || diffY != 0 )
+        if ( diffX != 0 || diffY != 0 ) {
             this.rmovetoSelection("nodes", diffX, diffY);
-    } else {
+        }
+    }
+    else {
         var node   = this.svgNodes.nodes;
         var first  = getUserCoordinate(node, e.startX, e.startY);
         var curr   = getUserCoordinate(node, e.clientX, e.clientY);
@@ -880,7 +871,8 @@ DAGFilterApp.prototype.drag = function(e) {
             if ( node.selected != select ) {
                 if ( select ) {
                     this.selections.nodes.selectChild(node);
-                } else {
+                }
+                else {
                     this.selections.nodes.deselectChild(node);
                 }
             }
@@ -889,11 +881,9 @@ DAGFilterApp.prototype.drag = function(e) {
 };
 
 
-/*****
-*
-*   rmovetoSelection
-*
-*****/
+/**
+ *   rmovetoSelection
+ */
 DAGFilterApp.prototype.rmovetoSelection = function(name, dx, dy) {
     this.selections[name].foreachChild(
         function(node) { node.rmoveto(dx, dy) }
@@ -901,11 +891,9 @@ DAGFilterApp.prototype.rmovetoSelection = function(name, dx, dy) {
 };
 
 
-/*****
-*
-*   dragend
-*
-*****/
+/**
+ *   dragend
+ */
 DAGFilterApp.prototype.dragend = function(e) {
     if ( this.dragMode == "marquee") {
         this.marquee.setAttributeNS(null, "display", "none");
@@ -919,11 +907,9 @@ DAGFilterApp.prototype.dragend = function(e) {
 };
 
 
-/*****
-*
-*   menuselect
-*
-*****/
+/**
+ *   menuselect
+ */
 DAGFilterApp.prototype.menuselect = function(e) {
     switch ( e.target.name ) {
         case "Clear":
@@ -955,7 +941,8 @@ DAGFilterApp.prototype.menuselect = function(e) {
 
             if ( currentFile != null && currentFile != "" ) {
                 cmd = new SaveCommand(this);
-            } else {
+            }
+            else {
                 cmd = new SaveAsCommand(this);
             }
             break;

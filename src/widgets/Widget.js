@@ -1,34 +1,28 @@
-/*****
-*
-*   Widget.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Widget.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Widget.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Widget(name, owner) {
-    if ( arguments.length > 0 ) this.init(name, owner);
+    if ( arguments.length > 0 ) {
+        this.init(name, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Widget.prototype.init = function(name, owner) {
     this.name     = name;
     this.owner    = owner;
@@ -42,11 +36,9 @@ Widget.prototype.init = function(name, owner) {
 };
 
 
-/*****
-*
-*   dispose
-*
-*****/
+/**
+ *   dispose
+ */
 Widget.prototype.dispose = function() {
     var root = this.svgNodes.root;
 
@@ -56,45 +48,37 @@ Widget.prototype.dispose = function() {
 };
 
 
-/*****
-*
-*   realize
-*
-*****/
+/**
+ *   realize
+ */
 Widget.prototype.realize = function(parentNode) {
     this._createSVG(parentNode);
     this._createEventListeners();
 }
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Widget.prototype._createSVG = function(parentNode) {
     this.svgNodes.root = createElement("g");
     parentNode.appendChild(this.svgNodes.root);
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 Widget.prototype._createEventListeners = function() {
     // abstract method
 };
 
 
-/*****  z-order  *****/
+/**  z-order  */
 
-/*****
-*
-*   bringToFront
-*
-*****/
+/**
+ *   bringToFront
+ */
 Widget.prototype.bringToFront = function() {
     var node   = this.svgNodes.root;
     var parent = node.parentNode;
@@ -103,33 +87,27 @@ Widget.prototype.bringToFront = function() {
 };
 
 
-/*****  display  *****/
+/**  display  */
 
-/*****
-*
-*   show
-*
-*****/
+/**
+ *   show
+ */
 Widget.prototype.show = function() {
     this.svgNodes.root.setAttributeNS(null, "display", "inline");
 };
 
 
-/*****
-*
-*   hide
-*
-*****/
+/**
+ *   hide
+ */
 Widget.prototype.hide = function() {
     this.svgNodes.root.setAttributeNS(null, "display", "none");
 };
 
 
-/*****
-*
-*   inRect
-*
-*****/
+/**
+ *   inRect
+ */
 Widget.prototype.inRect = function(rect) {
     var root   = this.svgNodes.root;
     var region = this.svgNodes.mouseRegion;
@@ -148,11 +126,9 @@ Widget.prototype.inRect = function(rect) {
 };
 
 
-/*****
-*
-*   update
-*
-*****/
+/**
+ *   update
+ */
 Widget.prototype.update = function() {
     // update the element's position
     this.svgNodes.root.setAttributeNS(
@@ -163,73 +139,68 @@ Widget.prototype.update = function() {
 };
 
 
-/*****  event handlers  *****/
+/**  event handlers  */
 
-/*****
-*
-*   handleEvent
-*
-*****/
+/**
+ *   handleEvent
+ */
 Widget.prototype.handleEvent = function(e) {
-    if ( this[e.type] == null )
+    if ( this[e.type] == null ) {
         throw "Unsupported event: " + e.type;
+    }
 
     this[e.type](e);
 };
 
 
-/*****
-*
-*   addEventListener
-*
-*****/
+/**
+ *   addEventListener
+ */
 Widget.prototype.addEventListener = function(type, handler, capture) {
     this.svgNodes.root.addEventListener(type, handler, capture);
 };
 
 
-/*****
-*
-*   removeEventListener
-*
-*****/
+/**
+ *   removeEventListener
+ */
 Widget.prototype.removeEventListener = function(type, handler, capture) {
     this.svgNodes.root.removeEventListener(type, handler, capture);
 };
 
 
-/*****
-*
-*   get/set methods
-*
-*****/
+/**
+ *
+ *   get/set methods
+ *
+ */
 
-/*****
-*
-*   getAttribute
-*
-*****/
+/**
+ *   getAttribute
+ */
 Widget.prototype.getAttribute = function(name) {
     var value = this[name];
 
-    if ( value == null )
+    if ( value == null ) {
         throw "Unrecognized attribute name: " + name;
+    }
 
     return value;
 };
 
 
-/*****
-*
-*   setAttribute
-*
-*****/
+/**
+ *   setAttribute
+ */
 Widget.prototype.setAttribute = function(name, value) {
-    if ( this[name] == null )
+    if ( this[name] == null ) {
         throw "Unrecognized attribute name: " + name;
+    }
 
     var handler = "_set_" + name;
 
     this[name] = value;
-    if ( this[handler] != null ) this[handler](value);
+    if ( this[handler] != null ) {
+        this[handler](value);
+    }
 };

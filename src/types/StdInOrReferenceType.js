@@ -1,45 +1,35 @@
-/*****
-*
-*   StdInOrReferenceType.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   StdInOrReferenceType.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 StdInOrReferenceType.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function StdInOrReferenceType() {
     //if ( arguments.length > 0 ) this.init();
     this.init();
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 StdInOrReferenceType.prototype.init = function() {
     this.name = "stdin-or-reference";
 };
 
 
-/*****
-*
-*   applyToSVGNode
-*
-*****/
+/**
+ *   applyToSVGNode
+ */
 StdInOrReferenceType.prototype.applyToSVGNode = function(svgParent, svgNode, inPort) {
     var edge    = inPort.getFirstEdge();
     var DAGNode = edge.getInputNode();
@@ -57,9 +47,11 @@ StdInOrReferenceType.prototype.applyToSVGNode = function(svgParent, svgNode, inP
             }
         }
         svgNode.setAttributeNS(null, inPort.name, reference);
-    } else if ( DAGNode.constructor === Literal ) {
+    }
+    else if ( DAGNode.constructor === Literal ) {
         svgNode.setAttributeNS(null, inPort.name, edge.getValue());
-    } else {
+    }
+    else {
         throw "Unrecognized DAGNode class in Port::toXML";
     }
 };

@@ -1,30 +1,24 @@
-/*****
-*
-*   Utilities.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Utilities.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   globals
-*
-*****/
+/**
+ *   globals
+ */
 var svgNS   = "http://www.w3.org/2000/svg";
 var xmlNS   = "http://www.w3.org/XML/1998/namespace";
 var xlinkNS = "http://www.w3.org/1999/xlink";
 
 
-/*****
-*
-*   getTransformToElement
-*
-*   NOTE: stopAt must be an ancestor of node.  This version of this routine
-*   does not verify this condition.  A "method not implemented" or something
-*   equivalent should fire if stopAt is not an ancestor.
-*
-*****/
+/**
+ *   getTransformToElement
+ *
+ *   NOTE: stopAt must be an ancestor of node.  This version of this routine
+ *   does not verify this condition.  A "method not implemented" or something
+ *   equivalent should fire if stopAt is not an ancestor.
+ */
 function getTransformToElement(node, stopAt) {
     var CTM = node.getCTM();
 
@@ -37,11 +31,9 @@ function getTransformToElement(node, stopAt) {
 }
 
 
-/*****
-*
-*   getUserCoordinate
-*
-*****/
+/**
+ *   getUserCoordinate
+ */
 function getUserCoordinate(node, x, y) {
     var svgRoot    = svgDocument.rootElement;
     var pan        = svgRoot.currentTranslate;
@@ -56,11 +48,9 @@ function getUserCoordinate(node, x, y) {
 };
 
 
-/*****
-*
-*   cleanTree
-*
-*****/
+/**
+ *   cleanTree
+ */
 function cleanTree(tree) {
     var queue = [ tree ];
 
@@ -85,11 +75,9 @@ function cleanTree(tree) {
 }
 
 
-/*****
-*
-*   formatTree
-*
-*****/
+/**
+ *   formatTree
+ */
 function formatTree(tree) {
     var queue = [ [tree, 1] ];
     var level = 1;
@@ -123,11 +111,9 @@ function formatTree(tree) {
 }
 
 
-/*****
-*
-*   createElement
-*
-*****/
+/**
+ *   createElement
+ */
 function createElement(tagName, attrs, text) {
 	var element = svgDocument.createElementNS(svgNS, tagName);
 
@@ -139,4 +125,3 @@ function createElement(tagName, attrs, text) {
     
     return element;
 }
-

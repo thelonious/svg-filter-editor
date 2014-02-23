@@ -1,65 +1,53 @@
-/*****
-*
-*   Command.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Command.js
+ *
+ *   copyright 2002, 2014 Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Command.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Command(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Command.prototype.init = function(owner) {
     this.owner = owner;
     this.doit();
 };
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 Command.prototype.doit = function() {
     // abstract method
 };
 
 
-/*****
-*
-*   undo
-*
-*****/
+/**
+ *   undo
+ */
 Command.prototype.undo = function() {
     // abstract method
 };
 
 
-/*****
-*
-*   redo
-*
-*****/
+/**
+ *   redo
+ */
 Command.prototype.redo = function() {
     // abstract method
 };

@@ -1,44 +1,36 @@
-/*****
-*
-*   MoveSelectionCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   MoveSelectionCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 MoveSelectionCommand.prototype             = new Command();
 MoveSelectionCommand.prototype.constructor = MoveSelectionCommand;
 MoveSelectionCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 MoveSelectionCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function MoveSelectionCommand(owner, name, dx, dy) {
-    if ( arguments.length > 0 ) this.init(owner, name, dx, dy);
+    if ( arguments.length > 0 ) {
+        this.init(owner, name, dx, dy);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 MoveSelectionCommand.prototype.init = function(owner, name, dx, dy) {
     // set properties
     // NOTE: we have to do this before calling the superclass since the
@@ -52,11 +44,9 @@ MoveSelectionCommand.prototype.init = function(owner, name, dx, dy) {
 };
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 MoveSelectionCommand.prototype.doit = function() {
     var dx = this.dx;
     var dy = this.dy;

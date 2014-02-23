@@ -1,46 +1,38 @@
-/*****
-*
-*   MenuItem.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   MenuItem.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 MenuItem.prototype             = new Widget();
 MenuItem.prototype.constructor = MenuItem;
 MenuItem.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 MenuItem.VERSION = 1.0;
 MenuItem.PADDING_LEFT  = 5;
 MenuItem.PADDING_RIGHT = 5;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function MenuItem(name, callback, parent, owner) {
-    if ( arguments.length > 0 ) this.init(name, callback, parent, owner);
+    if ( arguments.length > 0 ) {
+        this.init(name, callback, parent, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 MenuItem.prototype.init = function(name, callback, parent, owner) {
     // call superclass method
     MenuItem.superclass.init.call(this, name, owner);
@@ -53,11 +45,9 @@ MenuItem.prototype.init = function(name, callback, parent, owner) {
 };
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 MenuItem.prototype._createSVG = function(parentNode) {
     // call superclass method
     MenuItem.superclass._createSVG.call(this, parentNode);
@@ -117,11 +107,9 @@ MenuItem.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 MenuItem.prototype._createEventListeners = function () {
     var node = this.svgNodes.mouseRegion;
 
@@ -129,11 +117,9 @@ MenuItem.prototype._createEventListeners = function () {
 };
 
 
-/*****
-*
-*   _getHeight
-*
-*****/
+/**
+ *   _getHeight
+ */
 MenuItem.prototype._getHeight = function() {
     var result = 0;
     
@@ -145,18 +131,18 @@ MenuItem.prototype._getHeight = function() {
 };
 
 
-/*****
-*
-*   _adjustWidths
-*
-*****/
+/**
+ *   _adjustWidths
+ */
 MenuItem.prototype._adjustWidths = function() {
     var maxWidth = 0;
 
     for ( var i = 0; i < this.menuItems.length; i++ ) {
         var width = this.menuItems[i].getAttribute("width");
 
-        if ( width > maxWidth) maxWidth = width;
+        if ( width > maxWidth) {
+            maxWidth = width;
+        }
     }
 
     for ( var i = 0; i < this.menuItems.length; i++ ) {
@@ -165,18 +151,17 @@ MenuItem.prototype._adjustWidths = function() {
 };
 
 
-/*****
-*
-*   addMenuItem
-*
-*****/
+/**
+ *   addMenuItem
+ */
 MenuItem.prototype.addMenuItem = function(name, callback) {
     var mi = new MenuItem(name, callback, this, this.owner);
     var height;
 
     if ( this.menuItems.length == 0 ) {
         height = this._getHeight();
-    } else {
+    }
+    else {
         var lastMenuItem = this.menuItems[this.menuItems.length-1];
 
         height = lastMenuItem.getAttribute("y");
@@ -194,56 +179,56 @@ MenuItem.prototype.addMenuItem = function(name, callback) {
 };
 
 
-/*****
-*
-*   selectItem
-*
-*****/
+/**
+ *   selectItem
+ */
 MenuItem.prototype.selectItem = function(menuItem) {
-    if ( this.currentMenuItem != null ) this.currentMenuItem.select(false);
+    if ( this.currentMenuItem != null ) {
+        this.currentMenuItem.select(false);
+    }
 
     if ( menuItem.callback ) {
         menuItem.callback.handleEvent(
             { type: "menuselect", target: menuItem }
         );
         this.parent.selectItem(this);
-    } else {
+    }
+    else {
         menuItem.select(true);
         this.currentMenuItem = menuItem;
     }
 };
 
 
-/***** Event Handlers *****/
+/** Event Handlers */
 
-/*****
-*
-*   mousedown
-*
-*****/
+/**
+ *   mousedown
+ */
 MenuItem.prototype.mousedown = function(e) {
     this.parent.selectItem(this);
     e.stopPropagation();
 };
 
 
-/*****
-*
-*   select
-*
-*****/
+/**
+ *   select
+ */
 MenuItem.prototype.select = function(value) {
     if ( this.selected != value ) {
         var node = this.svgNodes.background;
 
         if ( value ) {
             node.setAttributeNS(null, "class", "menuitem-selected");
-        } else {
+        }
+        else {
             node.setAttributeNS(null, "class", "menuitem");
         }
         this.selected = value;
 
-        if ( this.currentMenuItem != null ) this.currentMenuItem.select(false);
+        if ( this.currentMenuItem != null ) {
+            this.currentMenuItem.select(false);
+        }
 
         var display = ( value ) ? "inline" : "none";
         for ( var i = 0; i < this.menuItems.length; i++ ) {
@@ -253,11 +238,9 @@ MenuItem.prototype.select = function(value) {
 };
 
 
-/*****
-*
-*   _set_width
-*
-*****/
+/**
+ *   _set_width
+ */
 MenuItem.prototype._set_width = function(value) {
     if ( this.svgNodes.root != null ) {
         this.svgNodes.background.setAttribute("width", value);

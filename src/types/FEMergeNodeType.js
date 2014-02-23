@@ -1,45 +1,35 @@
-/*****
-*
-*   FEMergeNodeType.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   FEMergeNodeType.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 FEMergeNodeType.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function FEMergeNodeType() {
     //if ( arguments.length > 0 ) this.init();
     this.init();
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 FEMergeNodeType.prototype.init = function() {
     this.name = "feMergeNode";
 };
 
 
-/*****
-*
-*   applyToSVGNode
-*
-*****/
+/**
+ *   applyToSVGNode
+ */
 FEMergeNodeType.prototype.applyToSVGNode = function(svgParent, svgNode, inPort) {
     var svgMergeNode = svgDocument.createElementNS(svgNS, this.name);
     var edge         = inPort.getFirstEdge();
@@ -54,9 +44,11 @@ FEMergeNodeType.prototype.applyToSVGNode = function(svgParent, svgNode, inPort) 
             child.setAttributeNS(null, "result", reference);
             svgMergeNode.setAttributeNS(null, "in", reference);
         }
-    } else if ( DAGNode.constructor === Literal ) {
+    }
+    else if ( DAGNode.constructor === Literal ) {
         svgMergeNode.setAttributeNS(null, "in", edge.getValue());
-    } else {
+    }
+    else {
         throw "Unrecognized DAGNode class in Port::toXML";
     }
 

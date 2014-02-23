@@ -1,24 +1,18 @@
-/*****
-*
-*   Parameter.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Parameter.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Parameter.VERSION = 1.0;
 
 
-/*****
-*
-*   FromNode
-*
-*****/
+/**
+ *   FromNode
+ */
 Parameter.FromNode = function(node) {
     var name   = node.getAttribute("name");
     var type   = node.getAttribute("type");
@@ -39,24 +33,21 @@ Parameter.FromNode = function(node) {
 };
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Parameter(name, type, groups) {
-    if ( arguments.length > 0 ) this.init(name, type, groups);
+    if ( arguments.length > 0 ) {
+        this.init(name, type, groups);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Parameter.prototype.init = function(name, type, groups) {
     this.name   = name;
     this.type   = type;
     this.groups = groups;
 };
-

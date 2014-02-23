@@ -1,54 +1,45 @@
-/*****
-*
-*   common.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/***
+ *   common.js
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   globals
-*
-*****/
+/**
+ *   globals
+ */
 var app;
 var currentFile = "";
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 function init(e) {
-    if ( window.svgDocument == null )
+    if ( window.svgDocument == null ) {
         svgDocument = e.target.ownerDocument;
+    }
 
     app = new DAGFilterApp(svgDocument.rootElement);
     waitForApp();
 }
 
 
-/*****
-*
-*   waitForApp
-*
-*****/
+/**
+ *   waitForApp
+ */
 function waitForApp() {
     if ( app.loadState != DAGFilterApp.LOADED ) {
         setTimeout("waitForApp()", 100);
-    } else {
+    }
+    else {
         app.makeButtons();
         //run();
     }
 }
 
 
-/*****
-*
-*   loadFile
-*
-*****/
+/**
+ *   loadFile
+ */
 function loadFile(name) {
     var filename = name.replace(/^.+\\/, "");
     
@@ -58,15 +49,14 @@ function loadFile(name) {
 }
 
 
-/*****
-*
-*   loadedFile
-*
-*****/
+/**
+ *   loadedFile
+ */
 function loadedFile(status) {
     if ( status.success ) {
         app.createGraph( parseXML(status.content) );
-    } else {
+    }
+    else {
         throw "Unable to open file";
     }
 }

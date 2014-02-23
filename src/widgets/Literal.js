@@ -1,26 +1,20 @@
-/*****
-*
-*   Literal.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Literal.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 Literal.prototype             = new DAGNode();
 Literal.prototype.constructor = Literal;
 Literal.superclass            = DAGNode.prototype;
 
 
-/*****
-*
-*   class properties
-*
-*****/
+/**
+ *   class properties
+ */
 Literal.VERSION = 1.0;
 Literal.PADDING_TOP    = 4;
 Literal.PADDING_BOTTOM = 4;
@@ -28,21 +22,19 @@ Literal.PADDING_LEFT   = 8;
 Literal.PADDING_RIGHT  = 8;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Literal(interface, owner) {
-    if ( arguments.length > 0 ) this.init(interface, owner);
+    if ( arguments.length > 0 ) {
+        this.init(interface, owner);
+    }
 }
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Literal.prototype._createSVG = function(parentNode) {
     // call superclass method
     Literal.superclass._createSVG.call(this, parentNode);
@@ -76,11 +68,9 @@ Literal.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 Literal.prototype._createEventListeners = function() {
     var mouseRegion = this.svgNodes.mouseRegion;
     
@@ -88,11 +78,9 @@ Literal.prototype._createEventListeners = function() {
 };
 
 
-/*****
-*
-*   _makeLabel
-*
-*****/
+/**
+ *   _makeLabel
+ */
 Literal.prototype._makeLabel = function() {
     var label = createElement(
         "text",
@@ -102,18 +90,16 @@ Literal.prototype._makeLabel = function() {
 
     this.svgNodes.label = label;
     for ( var i = 0; i < lines.length; i++ ) {
-            this.addTspan(lines[i]);
+        this.addTspan(lines[i]);
     }
 
     return label;
 };
 
 
-/*****
-*
-*   getValue
-*
-*****/
+/**
+ *   getValue
+ */
 Literal.prototype.getValue = function() {
     var result = "";
     var lines  = [];
@@ -128,11 +114,9 @@ Literal.prototype.getValue = function() {
 };
 
 
-/*****
-*
-*   _toXML
-*
-*****/
+/**
+ *   _toXML
+ */
 Literal.prototype._toXML = function(parent) {
     // call superclass method
     var node  = Element.superclass._toXML.call(this, parent);
@@ -143,21 +127,17 @@ Literal.prototype._toXML = function(parent) {
 };
 
 
-/*****
-*
-*   _createXMLNode
-*
-*****/
+/**
+ *   _createXMLNode
+ */
 Literal.prototype._createXMLNode = function() {
     return svgDocument.createElementNS(null, "literal");
 };
 
 
-/*****
-*
-*   update
-*
-*****/
+/**
+ *   update
+ */
 Literal.prototype.update = function() {
     // update the literal's position
     var root = this.svgNodes.root;
@@ -176,11 +156,9 @@ Literal.prototype.update = function() {
 };
 
 
-/*****
-*
-*   updateSize
-*
-*****/
+/**
+ *   updateSize
+ */
 Literal.prototype.updateSize = function() {
     var background  = this.svgNodes.background;
     var bar         = this.svgNodes.bar;
@@ -191,7 +169,8 @@ Literal.prototype.updateSize = function() {
     // set width and height
     if ( labelBBox.width < 1 || labelBBox.height < 1 ) {
         // do nothing
-    } else {
+    }
+    else {
         this.width = labelBBox.width + Literal.PADDING_LEFT + Literal.PADDING_RIGHT;
         this.height = labelBBox.height + Literal.PADDING_TOP + Literal.PADDING_BOTTOM;
 
@@ -237,17 +216,13 @@ Literal.prototype.updateSize = function() {
 };
 
 
-/*****
-*
-*   event handlers
-*
-*****/
+/**
+ *   event handlers
+ */
 
-/*****
-*
-*   select
-*
-*****/
+/**
+ *   select
+ */
 Literal.prototype.select = function(value) {
     if ( this.selected != value ) {
         var node = this.svgNodes.background;
@@ -255,7 +230,8 @@ Literal.prototype.select = function(value) {
         if ( value ) {
             node.setAttributeNS(null, "class", "literal-selected");
             //this.addEventListener("keypress", this, false);
-        } else {
+        }
+        else {
             node.setAttributeNS(null, "class", "literal");
             //this.removeEventListener("keypress", this, false);
         }
@@ -263,39 +239,39 @@ Literal.prototype.select = function(value) {
     }
 };
 
-/***** Event Handlers *****/
+/** Event Handlers */
 
-/*****
-*
-*   mousedown
-*
-*****/
+/**
+ *   mousedown
+ */
 Literal.prototype.mousedown = function(e) {
     if ( e.detail == 2 ) {
         this.owner.textbox = this;
         this.svgNodes.background.setAttributeNS(null, "class", "literal-editable");
-    } else {
+    }
+    else {
         // call superclass method
         Literal.superclass.mousedown.call(this, e);
     }
 };
 
 
-/*****
-*
-*   keypress
-*
-*****/
+/**
+ *   keypress
+ */
 Literal.prototype.keypress = function(e) {
 	var key = e.charCode;
 
 	if ( key >= 32 && key <= 127 ) {
 		this.addChar( String.fromCharCode(key) );
-	} else if ( key == 8 ) {
+	}
+    else if ( key == 8 ) {
 		this.deleteChar();
-	} else if ( key == 13 ) {
+	}
+    else if ( key == 13 ) {
 		this.addTspan("");
-	} else {
+	}
+    else {
 		//alert(key);
 	}
 
@@ -303,20 +279,19 @@ Literal.prototype.keypress = function(e) {
 };
 
 
-/*****
-*
-*	addChar
-*
-*	Add a character to end of the current line
-*	If the current line exceeds the width of the
-*	textbox, then create a new line
-*
-*****/
+/**
+ *	addChar
+ *	Add a character to end of the current line
+ *	If the current line exceeds the width of the
+ *	textbox, then create a new line
+ */
 Literal.prototype.addChar = function(char) {
 	var textbox = this.svgNodes.label;
 
     // make sure our text box has at least one tspan
-    if ( !textbox.hasChildNodes() ) this.addTspan("", 0);
+    if ( !textbox.hasChildNodes() ) {
+        this.addTspan("", 0);
+    }
     
     // get the last tspan's text node
 	var tspan = textbox.lastChild;
@@ -329,15 +304,12 @@ Literal.prototype.addChar = function(char) {
     this.updateSize();
 };
 
-/*****
-*
-*	deleteChar
-*
-*	Delete the last character of the last line
-*	If a line is empty as a result, then remove
-*	that line from the <text> element
-*
-*****/
+/**
+ *	deleteChar
+ *	Delete the last character of the last line
+ *	If a line is empty as a result, then remove
+ *	that line from the <text> element
+ */
 Literal.prototype.deleteChar = function() {
 	var textbox = this.svgNodes.label;
 
@@ -352,7 +324,8 @@ Literal.prototype.deleteChar = function() {
             // we have more than one character in the last line
             // remove the last character
 	        data.deleteData(length-1, 1);
-	    } else {
+	    }
+        else {
             // we have only one character
             // remove the tspan (line)
 	        textbox.removeChild(tspan);
@@ -363,22 +336,21 @@ Literal.prototype.deleteChar = function() {
 	}
 };
 
-/*****
-*
-*	addTspan
-*
-*	Used to add a new line to the textbox
-*	Offset is an optional parameter which designates
-*	the vertical offset of the new <tspan> element.
-*	This was needed to handle the first <tspan> added
-*	to the <text> element
-*
-*****/
+/**
+ *	addTspan
+ *	Used to add a new line to the textbox
+ *	Offset is an optional parameter which designates
+ *	the vertical offset of the new <tspan> element.
+ *	This was needed to handle the first <tspan> added
+ *	to the <text> element
+ */
 Literal.prototype.addTspan = function(char) {
     var textbox = this.svgNodes.label;
     var offset  = "1em";
 
-    if ( !textbox.hasChildNodes() ) offset = "0";
+    if ( !textbox.hasChildNodes() ) {
+        offset = "0";
+    }
 
     // create new tspan
 	var tspan = createElement(

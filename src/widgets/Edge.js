@@ -1,44 +1,36 @@
-/*****
-*
-*   Edge.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Edge.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 Edge.prototype             = new Widget();
 Edge.prototype.constructor = Edge;
 Edge.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Edge.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Edge(inPort, outPort, owner) {
-    if ( arguments.length > 0 ) this.init(inPort, outPort, owner);
+    if ( arguments.length > 0 ) {
+        this.init(inPort, outPort, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Edge.prototype.init = function(inPort, outPort, owner) {
     // call superclass method
     Edge.superclass.init.call(this, "#edge", owner);
@@ -53,11 +45,9 @@ Edge.prototype.init = function(inPort, outPort, owner) {
 };
 
 
-/*****
-*
-*   dispose
-*
-*****/
+/**
+ *   dispose
+ */
 Edge.prototype.dispose = function(port) {
     var root = this.svgNodes.root;
     
@@ -67,9 +57,11 @@ Edge.prototype.dispose = function(port) {
     
     if ( port === this.inPort ) {
         this.outPort.removeEdge(this);
-    } else if ( port === this.outPort ) {
+    }
+    else if ( port === this.outPort ) {
         this.inPort.removeEdge(this);
-    } else {
+    }
+    else {
         throw "Edge does not contain referenced Port";
     }
     
@@ -79,11 +71,9 @@ Edge.prototype.dispose = function(port) {
 };
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Edge.prototype._createSVG = function(parentNode) {
     this.svgNodes.root = createElement( "line", { "class": "edge" } );
     this.update();
@@ -91,11 +81,9 @@ Edge.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   getValue
-*
-*****/
+/**
+ *   getValue
+ */
 Edge.prototype.getValue = function() {
     var result = this.inPort.getValue();
 
@@ -105,11 +93,9 @@ Edge.prototype.getValue = function() {
 };
 
 
-/*****
-*
-*   getNode
-*
-*****/
+/**
+ *   getNode
+ */
 Edge.prototype.getNode = function(filterNode) {
     var result = this.inPort.getNode(filterNode);
 
@@ -119,52 +105,42 @@ Edge.prototype.getNode = function(filterNode) {
 };
 
 
-/*****
-*
-*   getInputNode
-*
-*****/
+/**
+ *   getInputNode
+ */
 Edge.prototype.getInputNode = function() {
     return this.inPort.parent;
 };
 
 
-/*****
-*
-*   getOutputName
-*
-*****/
+/**
+ *   getOutputName
+ */
 Edge.prototype.getOutputName = function() {
     return this.inPort.name;
 };
 
 
-/*****
-*
-*   getOutputGenId
-*
-*****/
+/**
+ *   getOutputGenId
+ */
 Edge.prototype.getOutputGenId = function() {
     return this.inPort.genId;
 };
 
 
-/*****
-*
-*   update
-*
-*****/
+/**
+ *   update
+ */
 Edge.prototype.update = function() {
     this.updateInput();
     this.updateOutput();
 };
 
 
-/*****
-*
-*   updateInput
-*
-*****/
+/**
+ *   updateInput
+ */
 Edge.prototype.updateInput = function() {
     var root = this.svgNodes.root;
     var p1   = this.inPort.getUserCoordinate();
@@ -174,11 +150,9 @@ Edge.prototype.updateInput = function() {
 };
 
 
-/*****
-*
-*   updateOutput
-*
-*****/
+/**
+ *   updateOutput
+ */
 Edge.prototype.updateOutput = function() {
     var root = this.svgNodes.root;
     var p2   = this.outPort.getUserCoordinate();

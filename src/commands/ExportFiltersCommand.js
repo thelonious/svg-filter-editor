@@ -1,44 +1,36 @@
-/*****
-*
-*   ExportFiltersCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   ExportFiltersCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 ExportFiltersCommand.prototype             = new Command();
 ExportFiltersCommand.prototype.constructor = ExportFiltersCommand;
 ExportFiltersCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 ExportFiltersCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function ExportFiltersCommand(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 ExportFiltersCommand.prototype.doit = function() {
     var tmpFile = currentFile;
     var svgRoot = svgDocument.rootElement;

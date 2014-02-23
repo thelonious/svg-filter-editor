@@ -1,44 +1,36 @@
-/*****
-*
-*   MenuBar.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   MenuBar.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 MenuBar.prototype             = new Widget();
 MenuBar.prototype.constructor = MenuBar;
 MenuBar.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 MenuBar.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function MenuBar(name, owner) {
-    if ( arguments.length > 0 ) this.init(name, owner);
+    if ( arguments.length > 0 ) {
+        this.init(name, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 MenuBar.prototype.init = function(name, owner) {
     // call superclass method
     MenuBar.superclass.init.call(this, name, owner);
@@ -49,11 +41,9 @@ MenuBar.prototype.init = function(name, owner) {
 };
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 MenuBar.prototype._createSVG = function(parentNode) {
     // call superclass method
     MenuBar.superclass._createSVG.call(this, parentNode);
@@ -80,22 +70,18 @@ MenuBar.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 MenuBar.prototype._createEventListeners = function() {
     svgDocument.rootElement.addEventListener("SVGResize", this, false);
     this.addEventListener("mousedown", this, false);
 };
 
 
-/*****
-*
-*   _updateHeight
-*
-*****/
+/**
+ *   _updateHeight
+ */
 MenuBar.prototype._updateHeight = function() {
     if ( this.svgNodes.root != null ) {
         var height = 0;
@@ -103,7 +89,9 @@ MenuBar.prototype._updateHeight = function() {
         for ( var i = 0; i < this.menuItems.length; i++ ) {
             var miHeight = this.menuItems[i]._getHeight();
             
-            if ( miHeight > height ) height = miHeight;
+            if ( miHeight > height ) {
+                height = miHeight;
+            }
         }
 
         this.svgNodes.background.setAttributeNS(null, "height", height);
@@ -111,18 +99,17 @@ MenuBar.prototype._updateHeight = function() {
 };
 
 
-/*****
-*
-*   addMenuItem
-*
-*****/
+/**
+ *   addMenuItem
+ */
 MenuBar.prototype.addMenuItem = function(name, callback, items) {
     var mi = new MenuItem(name, null, this, this.owner);
     var x;
 
     if ( this.menuItems.length == 0 ) {
         x = MenuItem.PADDING_LEFT;
-    } else {
+    }
+    else {
         var lastMenuItem = this.menuItems[this.menuItems.length-1];
 
         x = lastMenuItem.getAttribute("x");
@@ -144,31 +131,28 @@ MenuBar.prototype.addMenuItem = function(name, callback, items) {
 };
 
 
-/*****
-*
-*   selectItem
-*
-*****/
+/**
+ *   selectItem
+ */
 MenuBar.prototype.selectItem = function(menuItem) {
     if ( this.currentMenuItem != null ) this.currentMenuItem.select(false);
 
     if ( this.currentMenuItem == menuItem ) {
         menuItem.select(false);
         this.currentMenuItem = null;
-    } else {
+    }
+    else {
         this.currentMenuItem = menuItem;
         this.currentMenuItem.select(true);
     }
 };
 
 
-/***** Event Handlers *****/
+/** Event Handlers */
 
-/*****
-*
-*   mousedown
-*
-*****/
+/**
+ *   mousedown
+ */
 MenuBar.prototype.mousedown = function(e) {
     if ( this.currentMenuItem != null ) {
         this.currentMenuItem.select(false);
@@ -177,11 +161,9 @@ MenuBar.prototype.mousedown = function(e) {
 };
 
 
-/*****
-*
-*   SVGResize
-*
-*****/
+/**
+ *   SVGResize
+ */
 MenuBar.prototype.SVGResize = function(e) {
     var rect = this.svgNodes.background;
     var parentSize = { width: innerWidth, height: innerHeight };

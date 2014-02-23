@@ -1,44 +1,36 @@
-/*****
-*
-*   SaveCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   SaveCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 SaveCommand.prototype             = new Command();
 SaveCommand.prototype.constructor = SaveCommand;
 SaveCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 SaveCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function SaveCommand(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 SaveCommand.prototype.doit = function() {
     if ( this.owner != null ) {
         saveFile( [this.owner.createXML()] );

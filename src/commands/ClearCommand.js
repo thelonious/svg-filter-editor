@@ -1,44 +1,36 @@
-/*****
-*
-*   ClearCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   ClearCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 ClearCommand.prototype             = new Command();
 ClearCommand.prototype.constructor = ClearCommand;
 ClearCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 ClearCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function ClearCommand(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 ClearCommand.prototype.doit = function() {
     if ( this.owner != null ) {
         this.owner.clearScreen();

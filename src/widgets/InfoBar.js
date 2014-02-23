@@ -1,47 +1,39 @@
-/*****
-*
-*   InfoBar.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   InfoBar.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 InfoBar.prototype             = new Widget();
 InfoBar.prototype.constructor = InfoBar;
 InfoBar.superclass            = Widget.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 InfoBar.VERSION = 1.0;
 InfoBar.PADDING_LEFT   = 3;
 InfoBar.PADDING_TOP    = 3;
 InfoBar.PADDING_BOTTOM = 3;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function InfoBar(name, owner) {
-    if ( arguments.length > 0 ) this.init(name, owner);
+    if ( arguments.length > 0 ) {
+        this.init(name, owner);
+    }
 }
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 InfoBar.prototype._createSVG = function(parentNode) {
     // call superclass method
     InfoBar.superclass._createSVG.call(this, parentNode);
@@ -83,21 +75,17 @@ InfoBar.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   _createEventListeners
-*
-*****/
+/**
+ *   _createEventListeners
+ */
 InfoBar.prototype._createEventListeners = function() {
     svgDocument.rootElement.addEventListener("SVGResize", this, false);
 };
 
 
-/*****
-*
-*   _makeLabel
-*
-*****/
+/**
+ *   _makeLabel
+ */
 InfoBar.prototype._makeLabel = function() {
     var text  = svgDocument.createElementNS(svgNS, "text");
     var tnode = svgDocument.createTextNode(this.name);
@@ -110,11 +98,9 @@ InfoBar.prototype._makeLabel = function() {
 };
 
 
-/*****
-*
-*   SVGResize
-*
-*****/
+/**
+ *   SVGResize
+ */
 InfoBar.prototype.SVGResize = function(e) {
     var root = this.svgNodes.root;
     var rect = this.svgNodes.background;
@@ -135,11 +121,9 @@ InfoBar.prototype.SVGResize = function(e) {
 };
 
 
-/*****
-*
-*   get/set methods
-*
-*****/
+/**
+ *   get/set methods
+ */
 InfoBar.prototype.setLabel = function(text) {
     var label = this.svgNodes.label;
 

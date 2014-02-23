@@ -1,47 +1,40 @@
-/*****
-*
-*   Console.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Console.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 Console.prototype             = new Widget();
 Console.prototype.constructor = Console;
 Console.superclass            = Widget.prototype;
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Console.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Console(owner) {
-    if ( arguments.length > 0 ) this.init("#console", owner);
+    if ( arguments.length > 0 ) {
+        this.init("#console", owner);
+    }
 }
 
 
-/*****
-*
-*   _createSVG
-*
-*****/
+/**
+ *   _createSVG
+ */
 Console.prototype._createSVG = function(parentNode) {
     // create text and init properties
     this.svgNodes.root = createElement(
-        "text", { "class": "console" } );
+        "text", { "class": "console" }
+    );
     this.svgNodes.root.setAttributeNS(xmlNS, "xml:space", "preserve");
 
     // append text to group
@@ -52,11 +45,9 @@ Console.prototype._createSVG = function(parentNode) {
 };
 
 
-/*****
-*
-*   addLine
-*
-*****/
+/**
+ *   addLine
+ */
 Console.prototype.addLine = function(line) {
     var text  = this.svgNodes.root;
     var tspan = svgDocument.createElementNS(svgNS, "tspan");
@@ -70,14 +61,13 @@ Console.prototype.addLine = function(line) {
 };
 
 
-/*****
-*
-*   clear
-*
-*****/
+/**
+ *   clear
+ */
 Console.prototype.clear = function() {
     var text  = this.svgNodes.root;
 
-    while ( text.firstChild ) text.removeChild(text.firstChild);
+    while ( text.firstChild ) {
+        text.removeChild(text.firstChild);
+    }
 };
-

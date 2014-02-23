@@ -1,44 +1,40 @@
-/*****
-*
-*   OpenCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   OpenCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *
+ *   inheritance
+ *
+ */
 OpenCommand.prototype             = new Command();
 OpenCommand.prototype.constructor = OpenCommand;
 OpenCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 OpenCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function OpenCommand(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *
+ *   doit
+ *
+ */
 OpenCommand.prototype.doit = function() {
     if ( browseButton != null ) {
         browseButton.click();

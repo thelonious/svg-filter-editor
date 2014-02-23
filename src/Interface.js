@@ -1,24 +1,18 @@
-/*****
-*
-*   Interface.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   Interface.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 Interface.VERSION = 1.0;
 
 
-/*****
-*
-*   FromNode
-*
-*****/
+/**
+ *   FromNode
+ */
 Interface.FromNode = function(node) {
     var name   = node.getAttribute("name");
     var label  = node.getAttribute("label");
@@ -32,28 +26,27 @@ Interface.FromNode = function(node) {
     }
 
     output = node.getElementsByTagNameNS(null, "output");
-    if ( output.length > 0 )
+    if ( output.length > 0 ) {
         fi.setOutput( Parameter.FromNode(output.item(0)) );
+    }
     
     return fi;
 };
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function Interface(name, label, alias) {
-    if ( arguments.length > 0 ) this.init(name, label, alias);
+    if ( arguments.length > 0 ) {
+        this.init(name, label, alias);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 Interface.prototype.init = function(name, label, alias) {
     this.name    = name;
     this.label   = label;
@@ -64,31 +57,25 @@ Interface.prototype.init = function(name, label, alias) {
 };
 
 
-/*****
-*
-*   appendInput
-*
-*****/
+/**
+ *   appendInput
+ */
 Interface.prototype.appendInput = function(param) {
     this.inputs.push(param);
 };
 
 
-/*****
-*
-*   setOutput
-*
-*****/
+/**
+ *   setOutput
+ */
 Interface.prototype.setOutput = function(param) {
     this.output = param;
 };
 
 
-/*****
-*
-*   getInputType
-*
-*****/
+/**
+ *   getInputType
+ */
 Interface.prototype.getInputType = function(name) {
     var type = null;
     
@@ -106,11 +93,9 @@ Interface.prototype.getInputType = function(name) {
 };
 
 
-/*****
-*
-*   getInputsByGroupName
-*
-*****/
+/**
+ *   getInputsByGroupName
+ */
 Interface.prototype.getInputsByGroupName = function(name) {
     var result = [];
 
@@ -126,22 +111,17 @@ Interface.prototype.getInputsByGroupName = function(name) {
 };
 
 
-/*****
-*
-*   resetCounter
-*
-*****/
+/**
+ *   resetCounter
+ */
 Interface.prototype.resetCounter = function() {
     this.counter = 1;
 };
 
 
-/*****
-*
-*   getNextId
-*
-*****/
+/**
+ *   getNextId
+ */
 Interface.prototype.getNextId = function() {
     return this.alias + this.counter++;
 };
-

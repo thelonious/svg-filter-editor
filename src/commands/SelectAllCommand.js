@@ -1,44 +1,36 @@
-/*****
-*
-*   SelectAllCommand.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   SelectAllCommand.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 SelectAllCommand.prototype             = new Command();
 SelectAllCommand.prototype.constructor = SelectAllCommand;
 SelectAllCommand.superclass            = Command.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 SelectAllCommand.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function SelectAllCommand(owner) {
-    if ( arguments.length > 0 ) this.init(owner);
+    if ( arguments.length > 0 ) {
+        this.init(owner);
+    }
 }
 
 
-/*****
-*
-*   doit
-*
-*****/
+/**
+ *   doit
+ */
 SelectAllCommand.prototype.doit = function() {
     if ( this.owner != null ) {
         this.owner.selectAll();

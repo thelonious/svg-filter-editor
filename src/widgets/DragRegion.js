@@ -1,44 +1,36 @@
-/*****
-*
-*   DragRegion.js
-*
-*   copyright 2002, Kevin Lindsey
-*
-*****/
+/**
+ *   DragRegion.js
+ *
+ *   copyright 2002, 2014, Kevin Lindsey
+ */
 
-/*****
-*
-*   inheritance
-*
-*****/
+/**
+ *   inheritance
+ */
 DragRegion.prototype             = new MouseRegion();
 DragRegion.prototype.constructor = DragRegion;
 DragRegion.superclass            = MouseRegion.prototype;
 
 
-/*****
-*
-*   class variables
-*
-*****/
+/**
+ *   class variables
+ */
 DragRegion.VERSION = 1.0;
 
 
-/*****
-*
-*   constructor
-*
-*****/
+/**
+ *   constructor
+ */
 function DragRegion(position, owner) {
-    if ( arguments.length > 0 ) this.init("#dragRegion", position, owner);
+    if ( arguments.length > 0 ) {
+        this.init("#dragRegion", position, owner);
+    }
 }
 
 
-/*****
-*
-*   init
-*
-*****/
+/**
+ *   init
+ */
 DragRegion.prototype.init = function(name, position, owner) {
     // call superclass method
     DragRegion.superclass.init.call(this, name, position, owner);
@@ -52,29 +44,27 @@ DragRegion.prototype.init = function(name, position, owner) {
 };
 
 
-/*****
-*
-*   addEventListener
-*
-*****/
+/**
+ *   addEventListener
+ */
 DragRegion.prototype.addEventListener = function(type, handler, captures) {
-    if ( this.handlers[type] == null )
+    if ( this.handlers[type] == null ) {
         this.handlers[type] = [];
+    }
         
     this.handlers[type].push(handler);
 };
 
 
-/*****
-*
-*   removeEventListener
-*
-*****/
+/**
+ *   removeEventListener
+ */
 DragRegion.prototype.removeEventListener = function(type, handler, captures) {
     var handlers = this.handlers[type];
 
-    if ( handlers == null )
+    if ( handlers == null ) {
         throw "No events of this type or registered with this dragger: " + type;
+    }
 
     for ( var i = 0; i < handlers.length; i++ ) {
         if ( handlers[i] === handler ) {
@@ -85,11 +75,9 @@ DragRegion.prototype.removeEventListener = function(type, handler, captures) {
 };
 
 
-/*****
-*
-*   beginDrag
-*
-*****/
+/**
+ *   beginDrag
+ */
 DragRegion.prototype.beginDrag = function(e) {
     // save the start and current point
     this.startX = e.clientX;
@@ -112,21 +100,17 @@ DragRegion.prototype.beginDrag = function(e) {
 };
 
 
-/*****
-*
-*   mousemove
-*
-*****/
+/**
+ *   mousemove
+ */
 DragRegion.prototype.mousemove = function(e) {
     this.sendEvent(e, "drag");
 };
 
 
-/*****
-*
-*   mouseup
-*
-*****/
+/**
+ *   mouseup
+ */
 DragRegion.prototype.mouseup = function(e) {
     // send event (forced)
     this.sendEvent(e, "dragend");
@@ -140,11 +124,9 @@ DragRegion.prototype.mouseup = function(e) {
 };
 
 
-/*****
-*
-*   sendEvent
-*
-*****/
+/**
+ *   sendEvent
+ */
 DragRegion.prototype.sendEvent = function(e, type) {
     var handlers = this.handlers[type];
     
