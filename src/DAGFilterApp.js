@@ -30,34 +30,40 @@ DAGFilterApp.prototype.init = function(parent) {
     var root;
 
     // create types
-    this.types = {};
-    this.types.attribute             = new AttributeType();
-    this.types.ctFunction            = new CTFunctionType();
-    this.types.feMergeNode           = new FEMergeNodeType();
-    this.types.node                  = new NodeType();
-    this.types['stdin-or-reference'] = new StdInOrReferenceType();
+    this.types = {
+        attribute: new AttributeType(),
+        ctFunction: new CTFunctionType(),
+        feMergeNode: new FEMergeNodeType(),
+        node: new NodeType(),
+        'stdin-or-reference': new StdInOrReferenceType()
+    };
 
     // create selection managers
-    this.selections = {};
-    this.selections.nodes = new Selection(this);
+    this.selections = {
+        nodes: new Selection(this)
+    };
     //this.selections.ports = new Selection(this);
+
     this.port = null;
     this.textbox = null;
 
     // create svgNodes and append to DOM
     root = createElement(
-        "g", { id: "world", transform: "translate(130,0)" } );
+        "g", { id: "world", transform: "translate(130,0)" }
+    );
 
-    this.svgNodes = {};
-    this.svgNodes.root    = root;
-    this.svgNodes.edges   = createElement("g", { id: "edges" } );
-    this.svgNodes.nodes   = createElement("g", { id: "nodes" } );
-    this.svgNodes.samples = createElement(
-        "g", { id: "samples", "enable-background": "new" });
-    this.svgNodes.buttons = createElement("g", { id: "buttons" } );
+    this.svgNodes = {
+        root: root,
+        edges: createElement("g", { id: "edges" } ),
+        nodes: createElement("g", { id: "nodes" } ),
+        samples: createElement("g", { id: "samples", "enable-background": "new" }),
+        buttons: createElement("g", { id: "buttons" } )
+    };
+
     root.appendChild(this.svgNodes.edges);
     root.appendChild(this.svgNodes.nodes);
     root.appendChild(this.svgNodes.samples);
+
     parent.appendChild(root);
     parent.appendChild(this.svgNodes.buttons);
 
@@ -191,13 +197,12 @@ function getURL(url, target) {
     }
 
     request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
+        if (request.readyState == 4) { //} && request.status == 200) {
             var status = {
                 success: true,
                 content: request.responseText
             }
             
-            alert(status);
             target.operationComplete(status);
         }
     }

@@ -60,3 +60,10 @@ function loadedFile(status) {
         throw "Unable to open file";
     }
 }
+
+function parseXML(xml) {
+    var parser = new window.DOMParser();
+    var result = parser.parseFromString(xml, "text/xml");
+
+    return result;
+}
