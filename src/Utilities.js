@@ -34,7 +34,7 @@ function getUserCoordinate(node, x, y) {
     var svgRoot    = svgDocument.rootElement;
     var pan        = svgRoot.currentTranslate;
     var zoom       = svgRoot.currentScale;
-    var iCTM       = getTransformToElement(node).inverse();
+    var iCTM       = getTransformToElement(node, svgRoot).inverse();
     var worldPoint = svgRoot.createSVGPoint();
     
     worldPoint.x = (x - pan.x) / zoom;
