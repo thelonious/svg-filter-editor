@@ -40,11 +40,12 @@ InfoBar.prototype._createSVG = function(parentNode) {
     
     var root = this.svgNodes.root;
     var parentSize = { width: innerWidth, height: innerHeight };
-    //var parentSize = this.getParentSize();
     var bbox;
     var tx, ty;
 
     this.svgNodes.label = this._makeLabel();
+    // NOTE: we have to add the label here to get a valid bbox
+    root.appendChild( this.svgNodes.label );
     bbox = this.svgNodes.label.getBBox();
 
     // create background and add to group
@@ -60,7 +61,7 @@ InfoBar.prototype._createSVG = function(parentNode) {
     );
     root.appendChild( this.svgNodes.background );
 
-    // add text to group
+    // add text to group again to put it in the correct z-order
     root.appendChild( this.svgNodes.label );
 
     // Calculate translation to place infobar at bottom of window
