@@ -33,9 +33,11 @@ function Console(owner) {
 Console.prototype._createSVG = function(parentNode) {
     // create text and init properties
     this.svgNodes.root = createElement(
-        "text", { "class": "console" }
+        "text", {
+            "class": "console",
+            "xml:space": "preserve"
+        }
     );
-    this.svgNodes.root.setAttributeNS(xmlNS, "xml:space", "preserve");
 
     // append text to group
     parentNode.appendChild( this.svgNodes.root );
