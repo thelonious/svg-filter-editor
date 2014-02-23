@@ -20,15 +20,10 @@ var xlinkNS = "http://www.w3.org/1999/xlink";
  *   equivalent should fire if stopAt is not an ancestor.
  */
 function getTransformToElement(node, stopAt) {
-    var CTM = node.getCTM();
+    var nodeTransform = node.getScreenCTM();
+    var stopAtTransform = stopAt.getScreenCTM();
 
-    if ( stopAt == null ) stopAt = svgDocument.rootElement;
-
-    while ( ( node = node.parentNode ) != stopAt ) {
-        CTM = node.getCTM().multiply(CTM);
-    }
-    
-    return CTM;
+    return nodeTransform.multiply(stopAtTransform.inverse());
 }
 
 
