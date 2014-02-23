@@ -24,8 +24,9 @@ function getTransformToElement(node, stopAt) {
 
     if ( stopAt == null ) stopAt = svgDocument.rootElement;
 
-    while ( ( node = node.parentNode ) != stopAt )
+    while ( ( node = node.parentNode ) != stopAt ) {
         CTM = node.getCTM().multiply(CTM);
+    }
     
     return CTM;
 }
@@ -62,7 +63,8 @@ function cleanTree(tree) {
             
             if ( child.nodeType == 1 ) {
                 queue.push(child)
-            } else if ( child.nodeType == 3 ) {
+            }
+            else if ( child.nodeType == 3 ) {
                 if ( child.data.match(/^\s*$/) ) {
                     node.removeChild(child);
                     i--;
@@ -94,7 +96,9 @@ function formatTree(tree) {
         for ( var i = 0; i < level - 1; i++ ) filler2 += space;
         
         if ( node.hasChildNodes() ) {
-            if ( node.firstChild.nodeType == 3 ) continue;
+            if ( node.firstChild.nodeType == 3 ) {
+                continue;
+            }
 
             for ( var i = 0; i < node.childNodes.length; i++ ) {
                 var child = node.childNodes.item(i);
@@ -115,13 +119,22 @@ function formatTree(tree) {
  *   createElement
  */
 function createElement(tagName, attrs, text) {
-	var element = svgDocument.createElementNS(svgNS, tagName);
+    var element = svgDocument.createElementNS(svgNS, tagName);
 
-	for (var a in attrs)
-		element.setAttributeNS(null, a, attrs[a]);
+    for (var a in attrs) {
+        if ( a.match(/^xml:/) ) {
+            // HACK: please fix :)
+            a = a.replace(/^xml:/, "");
+            element.setAttributeNS(xmlNS, a, attrs[a]);
+        }
+        else {
+            element.setAttributeNS(null, a, attrs[a]);
+        }
+    }
 
-	if ( text != null )
-		element.appendChild( svgDocument.createTextNode(text) );
+    if ( text != null ) {
+        element.appendChild( svgDocument.createTextNode(text) );
+    }
     
     return element;
 }
