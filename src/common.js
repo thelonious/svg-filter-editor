@@ -61,8 +61,40 @@ function loadedFile(status) {
     }
 }
 
+function getURL(url, target) {
+    var request;
+
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        request = new XMLHttpRequest();
+    }
+    else {
+        // code for IE6, IE5
+        request = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) { //} && request.status == 200) {
+            var status = {
+                success: true,
+                content: request.responseText
+            }
+
+            if (typeof target == "function") {
+                target(status);
+            }
+            else {
+                target.operationComplete(status);
+            }
+        }
+    }
+
+    request.open("GET", url, true);
+    request.send();
+}
+
 function parseXML(xml) {
-    var parser = new window.DOMParser();
+    var parser = new DOMParser();
     var result = parser.parseFromString(xml, "text/xml");
 
     return result;
