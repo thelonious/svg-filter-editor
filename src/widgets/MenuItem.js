@@ -68,6 +68,8 @@ MenuItem.prototype._createSVG = function(parentNode) {
         },
         this.name
     );
+    // NOTE: we have to add the label here to get a valid bbox
+    root.appendChild( this.svgNodes.label );
     var bbox = this.svgNodes.label.getBBox();
     
     // set width based on bbox
@@ -83,7 +85,7 @@ MenuItem.prototype._createSVG = function(parentNode) {
     );
     root.appendChild( this.svgNodes.background );
 
-    // add label to group
+    // add text to group again to put it in the correct z-order
     root.appendChild( this.svgNodes.label );
 
     // create mouse region and add to group

@@ -46,6 +46,8 @@ Element.prototype._createSVG = function(parentNode) {
     this.svgNodes.label = createElement(
         "text", { "class": "element-label" }, this.name
     );
+    // NOTE: we have to add the label here to get a valid bbox
+    root.appendChild( this.svgNodes.label );
     labelBBox = this.svgNodes.label.getBBox();
 
     // set width and height
@@ -80,7 +82,7 @@ Element.prototype._createSVG = function(parentNode) {
         )
     );
 
-    // add text to group
+    // add text to group again to put it in the correct z-order
     root.appendChild( this.svgNodes.label );
 
     // create mouse region and append to group
