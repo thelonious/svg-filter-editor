@@ -109,6 +109,11 @@ function formatTree(tree) {
     return tree;
 }
 
+function printNode(node) {
+    var serializer = new XMLSerializer();
+
+    return serializer.serializeToString(node);
+}
 
 /**
  *   createElement
