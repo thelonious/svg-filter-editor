@@ -132,4 +132,3 @@ InfoBar.prototype.setLabel = function(text) {
         label.firstChild.data = text;
     }
 };
-
