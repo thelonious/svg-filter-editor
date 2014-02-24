@@ -99,3 +99,9 @@ function parseXML(xml) {
 
     return result;
 }
+
+function printNode(node) {
+    var serializer = new XMLSerializer();
+
+    return serializer.serializeToString(node);
+}
