@@ -166,7 +166,7 @@ DAGFilterApp.prototype.makeButtons = function() {
         var button = new Button(interface.name, interface.label, this);
         
         button.setAttribute("x", "4");
-        button.setAttribute("y", buttonIndex * (buttonHeight + buttonPad) + 4 + 15);
+        button.setAttribute("y", buttonIndex * (buttonHeight + buttonPad) + 4 + 15 + 10);
         button.setAttribute("width", buttonWidth);
         button.setAttribute("height", buttonHeight);
         button.realize(this.svgNodes.buttons);
