@@ -122,14 +122,13 @@ function createElement(tagName, attrs, text) {
     var element = svgDocument.createElementNS(svgNS, tagName);
 
     for (var a in attrs) {
-        if ( a.match(/^xml:/) ) {
-            // HACK: please fix :)
-            a = a.replace(/^xml:/, "");
-            element.setAttributeNS(xmlNS, a, attrs[a]);
+        var ns = null;
+
+        if ( (a.match(/^xml:/)) !== null ) {
+            ns = xmlNS;
         }
-        else {
-            element.setAttributeNS(null, a, attrs[a]);
-        }
+
+        element.setAttributeNS(ns, a, attrs[a]);
     }
 
     if ( text != null ) {
